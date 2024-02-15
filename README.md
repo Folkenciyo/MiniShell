@@ -1,0 +1,2 @@
+# MiniShell
+Our minibash terminal!! 
