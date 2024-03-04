@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 12:15:14 by pjimenez          #+#    #+#             */
-/*   Updated: 2024/03/04 15:21:36 by pjimenez         ###   ########.fr       */
+/*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
+/*   Updated: 2024/03/04 14:57:50 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main()
-{
-    return(0);
-}
+#ifndef MINISHELL_H
+# define MINISHELL_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+// console_init.c
+int	console_init();
+#endif
