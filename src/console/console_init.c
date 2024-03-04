@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   console_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 12:15:14 by pjimenez          #+#    #+#             */
-/*   Updated: 2024/03/04 15:00:16 by juguerre         ###   ########.fr       */
+/*   Created: 2024/03/04 14:51:23 by juguerre          #+#    #+#             */
+/*   Updated: 2024/03/04 14:52:02 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int console_init()
 {
-	console_init();
-	return	(0);
+    printf("Welcome to minishell\n");
+    return(0);
 }
