@@ -3,5 +3,5 @@
 int main()
 {
     console_init();
-    retrun (0);
+    return (0);
 }
