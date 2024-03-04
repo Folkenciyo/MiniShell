@@ -30,4 +30,5 @@ int console_init()
         rl_on_new_line();
     }
     return 0;
+    
 }
