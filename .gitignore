@@ -1,0 +1,30 @@
+# System files
+.DS_Store
+# Object files
+obj/
+*.o
+
+# Files
+#main.c
+
+# Executables
+*.out
+
+# Temp files
+*.swp
+
+# GITIGNORE
+#.gitignore
+
+# Makefile
+#Makefile
+
+# Text directory and files
+test/
+*.txt
+
+# Debug directory and files
+*.dSYM/
+
+# Visual Studio Code directory and files
+.vscode/
