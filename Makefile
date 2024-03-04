@@ -130,6 +130,6 @@ git:
 push_to_juan:
 			@git add .
 			@git commit -m "Makefile auto commit"
-			@git push juan main
+			
 
 .PHONY:		all clean fclean re git
