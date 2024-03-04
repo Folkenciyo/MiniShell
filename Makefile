@@ -127,4 +127,9 @@ git:
 			@git commit -m "Makefile auto commit"
 			@git push
 
+push_to_juan:
+			@git add .
+			@git commit -m "Makefile auto commit"
+			
+
 .PHONY:		all clean fclean re git
