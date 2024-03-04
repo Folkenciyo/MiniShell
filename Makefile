@@ -45,7 +45,8 @@ SRC_DIR			= src/
 CONSOLE_DIR		= console/
 OBJ_DIR			= obj/
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra -g3 -I
+HEADER			= -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include
+CFLAGS			=  -Wall -Werror -Wextra -g3 -I
 RM				= rm -f
 AR				= ar rcs
 
@@ -77,7 +78,7 @@ $(NAME):	$(OBJS)
 			@make -C $(LIBFT)
 			@cp libft/libft.a .
 			@mv libft.a $(NAME)
-			@$(CC) $(OBJS) -o $(NAME) $(LIBFT)/libft.a
+			@$(CC) $(OBJS) -o $(NAME) $(LIBFT)/libft.a $(HEADER) 
 			@echo "$(GREEN)MiniShell compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
