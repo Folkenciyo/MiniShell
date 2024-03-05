@@ -1,4 +1,3 @@
-// hazme un readme básico basado en el proyecto minishell de telefónica 42
 # MiniShell
 
 This is a basic implementation of a shell program, inspired by the MiniShell project from Telefónica 42.
