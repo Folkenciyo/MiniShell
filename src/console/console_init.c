@@ -11,22 +11,19 @@ void console_init()
 {
     char* input;
     char *user;
-    // signal(SIGINT, sigint_handler); 
     user = ft_strjoin(getenv("USER"),"$ ");
-    // Bucle principal para leer y procesar entradas del usuario
+    
     while (1) 
     {
-        input = readline(user); // Mostrar un prompt para el usuario
+        signals_call();
+        input = readline(user);
         if (!input) 
-        { // Comprobar si el usuario ha terminado de ingresar la entrada
+        {
             printf("\n");
             break;
         }
-        if (ft_strncmp(input,"clear",5) == 0)
-            printf("\033[H\033[2J");    
-        add_history(input); // Agregar la entrada a la historia para facilitar la navegación
-        // Aquí puedes procesar la entrada del usuario como desees
-        free(input); // Liberar la memoria asignada por readline
+        add_history(input);
+        free(input);
         rl_on_new_line();
     }
 

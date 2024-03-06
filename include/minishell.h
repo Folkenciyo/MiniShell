@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/05 20:26:12 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:45:53 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ t_env_list				*envp_list_new(char *key, char *value);
 t_env_list				*envp_list_add_back(t_env_list *lst, t_env_list *new);
 void					envp_list_add_front(t_env_list *lst, t_env_list *new);
 
+//****** CONSOLE INIT*****/
+//console_init.c
 void					console_init(void);
 
+//*****SIGNALS HANDLER*****/
+//signals_handler.c
+void					signals_call(void);
 #endif

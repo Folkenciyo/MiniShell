@@ -45,6 +45,7 @@ SRC_DIR			= src/
 CONSOLE_DIR		= console/
 ENVP_LIST_DIR	= envp_list/
 OBJ_DIR			= obj/
+SIGS_DIR		= signals/
 CC				= gcc
 HEADER			= -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include
 CFLAGS			=  -Wall -Werror -Wextra -g3 -I
@@ -59,10 +60,12 @@ AR				= ar rcs
 SRC_FILES	=	main init_data
 CONSOLE 	=	console_init
 ENVP_LIST	=	envp_list_manage
+SIGNALS		=	signals_handler
 
 
 SRC_FILES+=$(addprefix $(ENVP_LIST_DIR),$(ENVP_LIST))
 SRC_FILES+=$(addprefix $(CONSOLE_DIR),$(CONSOLE))
+SRC_FILES+=$(addprefix $(SIGS_DIR),$(SIGNALS))
 
 
 # Files 
@@ -91,6 +94,7 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)
 			@mkdir -p $(OBJ_DIR)$(ENVP_LIST_DIR)
 			@mkdir -p $(OBJ_DIR)$(CONSOLE_DIR)
+			@mkdir -p $(OBJ_DIR)$(SIGS_DIR)
 
 # Rules
 
