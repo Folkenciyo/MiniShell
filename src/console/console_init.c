@@ -7,7 +7,7 @@
 //     exit(EXIT_SUCCESS);
 // }
 
-void console_init() 
+void console_init(t_data *data)
 {
     char* input;
     char *user;
@@ -19,12 +19,18 @@ void console_init()
         input = readline(user);
         if (!input) 
         {
-            printf("\n");
+            printf("exit\n");
+            data->exit = 1;
             break;
         }
+
         add_history(input);
+        //tokenizer(data,input);
+        if (*input != '\0')
+			add_history(input);
         free(input);
         rl_on_new_line();
     }
+    clear_history();
 
 }

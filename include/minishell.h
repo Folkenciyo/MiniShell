@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/06 18:45:53 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:19:54 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
+# include "defines.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -61,7 +62,7 @@ typedef struct s_data
 	int					exit;
 	char				**envp;
 	t_env_list			*envp_list;
-	// t_token	*token;
+	t_token				*token_list;
 	t_cmd				*cmd_list;
 }						t_data;
 

@@ -230,6 +230,17 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+/**
+ * @brief Structure of a token.
+*/
+typedef struct s_token
+{
+	int				key;
+	char			*content;
+	int				len;
+	struct s_token	*next;
+}	t_token;
+
 /* 
 ** List functions 
 */
@@ -279,5 +290,12 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
  * @return Pointer to the last element.
  */
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+
+/*Token functions, literaly the same functions of lst but with tokens*/
+t_token	*ft_tokennew(int key, char *content);
+void	ft_tokenadd_back(t_token **lst, t_token *new);
+void	ft_tokenadd_front(t_token **lst, t_token *new);
+
 
 #endif
