@@ -44,6 +44,7 @@ LIBFT			= libft
 SRC_DIR			= src/
 CONSOLE_DIR		= console/
 ENVP_LIST_DIR	= envp_list/
+PARSER_DIR		= parser/
 OBJ_DIR			= obj/
 SIGS_DIR		= signals/
 CC				= gcc
@@ -61,11 +62,13 @@ SRC_FILES	=	main init_data
 CONSOLE 	=	console_init
 ENVP_LIST	=	envp_list_manage
 SIGNALS		=	signals_handler
+PARSER		=	handlers token_init parser_utils
 
 
 SRC_FILES+=$(addprefix $(ENVP_LIST_DIR),$(ENVP_LIST))
 SRC_FILES+=$(addprefix $(CONSOLE_DIR),$(CONSOLE))
 SRC_FILES+=$(addprefix $(SIGS_DIR),$(SIGNALS))
+SRC_FILES+=$(addprefix $(PARSER_DIR),$(PARSER))
 
 
 # Files 
@@ -95,6 +98,7 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)$(ENVP_LIST_DIR)
 			@mkdir -p $(OBJ_DIR)$(CONSOLE_DIR)
 			@mkdir -p $(OBJ_DIR)$(SIGS_DIR)
+			@mkdir -p $(OBJ_DIR)$(PARSER_DIR)
 
 # Rules
 

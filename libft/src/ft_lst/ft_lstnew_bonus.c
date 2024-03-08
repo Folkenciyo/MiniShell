@@ -28,7 +28,7 @@ t_token	*ft_tokennew(int key,char *content)
 {
 	t_token	*new_node;
 
-	new_node = (t_list *)malloc(sizeof(t_list));
+	new_node = (t_token *)malloc(sizeof(t_token));
 	if (!new_node)
 		return (0);
 	new_node->key = key;

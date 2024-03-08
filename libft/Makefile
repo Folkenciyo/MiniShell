@@ -37,7 +37,7 @@ FTTO		=	ft_atoi ft_itoa ft_tolower ft_toupper
 FTSTR_DIR	=	ft_str/
 FTSTR		=	ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
 				ft_strlcat ft_strlcpy ft_strlen ft_strmapi ft_strncmp \
-				ft_strnstr ft_strrchr ft_strtrim ft_substr
+				ft_strnstr ft_strrchr ft_strtrim ft_substr ft_strndup
 
 FTLST_DIR	=	ft_lst/
 FTLST		=	ft_lstadd_back_bonus ft_lstadd_front_bonus ft_lstclear_bonus ft_lstdelone_bonus \

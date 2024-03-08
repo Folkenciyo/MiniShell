@@ -145,6 +145,11 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t slen);
  */
 char		*ft_strdup(const char *str);
 /**
+ * @brief Save a copy of n characters of a string.
+ * @return Pointer to the copy.
+ */
+char		*ft_strndup(const char *str, int n);
+/**
  * @brief Size-Bounded string copying.
  * @return The length of the string.
  */

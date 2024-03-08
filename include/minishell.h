@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/07 17:19:54 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:01:16 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,23 @@ void					envp_list_add_front(t_env_list *lst, t_env_list *new);
 
 //****** CONSOLE INIT*****/
 //console_init.c
-void					console_init(void);
+void					console_init(t_data *data);
 
 //*****SIGNALS HANDLER*****/
 //signals_handler.c
 void					signals_call(void);
 #endif
+
+//*******TOKEN FILL*********/
+//token_init.c
+void    fill_token(t_data *data, int key, char *value);
+int     token_maker(t_data *data,char *str);
+
+/*UTILS FOR THE PARSER*/
+//parser_utils.c
+int special_chars(char c);
+int is_space(char c);
+
+/******CHARACTER HANDLERS*****/
+//handlers.c
+void space_handler(t_data *data, char *str);

@@ -25,7 +25,7 @@ void console_init(t_data *data)
         }
 
         add_history(input);
-        //tokenizer(data,input);
+        token_maker(data,input);
         if (*input != '\0')
 			add_history(input);
         free(input);
