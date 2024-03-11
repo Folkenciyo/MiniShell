@@ -3,7 +3,7 @@
 int special_chars(char c)
 {
     if (c == '\"' || c == '\'' || c == '>' 
-    || c == '<' || c == ' ' || c == '|')
+    || c == '<' || is_space(c) || c == '|' || c == '$')
         return (1);
     return (0);
 }
@@ -15,3 +15,4 @@ int is_space(char c)
         return (1);
     return (0);
 }
+

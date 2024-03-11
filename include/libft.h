@@ -148,7 +148,7 @@ char		*ft_strdup(const char *str);
  * @brief Save a copy of n characters of a string.
  * @return Pointer to the copy.
  */
-char		*ft_strndup(const char *str, int n);
+char		*ft_strndup(const char *str, size_t n);
 /**
  * @brief Size-Bounded string copying.
  * @return The length of the string.

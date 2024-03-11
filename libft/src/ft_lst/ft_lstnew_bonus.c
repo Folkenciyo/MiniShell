@@ -33,6 +33,7 @@ t_token	*ft_tokennew(int key,char *content)
 		return (0);
 	new_node->key = key;
 	new_node->content = content;
+	new_node->len = ft_strlen(content);
 	new_node->next = NULL;
 	return (new_node);
 }

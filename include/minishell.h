@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/08 14:01:16 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:16:10 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void					console_init(t_data *data);
 //*****SIGNALS HANDLER*****/
 //signals_handler.c
 void					signals_call(void);
-#endif
+
 
 //*******TOKEN FILL*********/
 //token_init.c
@@ -97,4 +97,7 @@ int is_space(char c);
 
 /******CHARACTER HANDLERS*****/
 //handlers.c
-void space_handler(t_data *data, char *str);
+void space_handler(t_data *data, char **str);
+void word_handler(t_data *data, char **str);
+void redir_handler(t_data *data,char **str);
+#endif

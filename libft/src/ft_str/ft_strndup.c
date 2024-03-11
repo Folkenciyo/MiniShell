@@ -1,10 +1,10 @@
 
 #include "../../../include/libft.h"
 
-char    *ft_strndup(const char *str, int n)
+char    *ft_strndup(const char *str, size_t n)
 {
     char *dest;
-    int len;
+    size_t len;
     
     len = ft_strlen(str);
     if (len < n)
