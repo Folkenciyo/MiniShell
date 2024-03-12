@@ -32,8 +32,8 @@ t_token	*ft_tokennew(int key,char *content)
 	if (!new_node)
 		return (0);
 	new_node->key = key;
-	new_node->content = content;
-	new_node->len = ft_strlen(content);
+	new_node->content = ft_strdup(content);
+	new_node->len = ft_strlen(new_node->content);
 	new_node->next = NULL;
 	return (new_node);
 }

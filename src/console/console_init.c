@@ -1,12 +1,6 @@
 
 #include "minishell.h"
 
-// void sigint_handler(int sig) 
-// {
-//     printf("\nCtrl + C recibido. Saliendo de la consola.\n");
-//     exit(EXIT_SUCCESS);
-// }
-
 void console_init(t_data *data)
 {
     char* input;
@@ -29,8 +23,10 @@ void console_init(t_data *data)
         if (*input != '\0')
 			add_history(input);
         free(input);
+        free_token(&data->token_list);
         rl_on_new_line();
     }
+    free(user);
     clear_history();
 
 }

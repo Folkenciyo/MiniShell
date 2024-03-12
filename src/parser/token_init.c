@@ -20,10 +20,9 @@ int token_maker(t_data *data,char *str)
 
     while(*tmp)
     {
-        
-        if (is_space(*tmp))
-            space_handler(data,&tmp); 
-        else if (!special_chars(*tmp))
+        // if (is_space(*tmp))
+        //     space_handler(data,&tmp); 
+        if (!special_chars(*tmp))
             word_handler(data,&tmp);
         else if (*tmp == '>' || *tmp == '<')
             redir_handler(data,&tmp);
@@ -38,15 +37,22 @@ int token_maker(t_data *data,char *str)
         */
        tmp++;
     }
-    while (data->token_list)
-    {
-        
-        printf("key : %d\n",data->token_list->key);
-        printf("content : %s\n",data->token_list->content);
-        printf("len : %d\n",data->token_list->len);
-        printf("--------------------------------------------\n");
-        data->token_list = data->token_list->next;
-    }
+    print_token(data);
     
     return (1);
+}
+
+void print_token(t_data *data)
+{
+    t_token *token;
+    token = data->token_list;
+    while (token)
+    {
+        
+        printf("key : %d\n",token->key);
+        printf("content : %s\n",token->content);
+        printf("len : %d\n",token->len);
+        printf("--------------------------------------------\n");
+        token = token->next;
+    }
 }

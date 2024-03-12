@@ -1,16 +1,16 @@
 #include "minishell.h"
 
+//SIN APLICAR HASTA NUEVO AVISO
 void space_handler(t_data *data, char **str)
 {
-    // int 	i;
     char	*tmp;
     char    *start;
 
     start = *str;
-    // i = 0;
     while (is_space(*(*str + 1)))
+    {
         (*str)++;
-	
+    }
 	tmp = ft_strndup(start,*str + 1 - start);
 	fill_token(data,TKN_SP,tmp);
 	free(tmp);
@@ -32,26 +32,10 @@ void word_handler(t_data *data, char **str)
 					&& *(*str + 1) != '&')))
 			(*str)++;
 		tmp = ft_strndup(start, *str + 1 - start);
-        printf("tmp tmp tmp :%s\n",tmp);
+        printf("tmp :%s\n",tmp);
 		fill_token(data, TKN_WORD, tmp);
-		free(tmp);
 	}
-    // int i;
-    // int start;
-    // char *tmp;
-
-    // start = 0;
-    // i = 0;
-    // if (!special_chars(str[i]))
-    // {
-    //     start = i;
-    //     while (str[i] && !special_chars(str[i]))
-    //         i++;
-    //     tmp = ft_strndup(str,i-start);
-    //     fill_token(data,TKN_WORD,tmp);
-    //     free(tmp);
-    // }
-    
+    free(tmp);
 }
 
 void redir_handler(t_data *data,char **str)
