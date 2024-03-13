@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:01:53 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/05 20:22:35 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:13:17 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	init_env_list(t_data *data, char **envp)
 		}
 		delimiter = ft_strchr(envp[i], '=');
 		new->key = ft_substr(envp[i], 0, delimiter - envp[i]);
-		printf("key = %s\n", new->key);
+		// printf("key = %s\n", new->key);
 		new->value = ft_strdup(delimiter + 1);
-		printf("value = %s\n", new->value);
+		// printf("value = %s\n", new->value);
 		new->next = NULL;
 		if (!data->envp_list)
 			data->envp_list = new;

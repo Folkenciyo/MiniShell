@@ -26,3 +26,18 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		last->next = new;
 	}
 }
+
+void	ft_tokenadd_back(t_token **lst, t_token *new)
+{
+	t_token	*last;
+
+	if (!*lst)
+		*lst = new;
+	else
+	{
+		last = *lst;
+		while (last->next != 0)
+			last = last->next;
+		last->next = new;
+	}
+}

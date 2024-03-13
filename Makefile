@@ -45,6 +45,9 @@ SRC_DIR			= src/
 CONSOLE_DIR		= console/
 PIPEX_DIR		= pipex/
 ENVP_LIST_DIR	= envp_list/
+PARSER_DIR		= parser/
+FREE_DIR		= free/
+SIGS_DIR		= signals/
 OBJ_DIR			= obj/
 CC				= gcc
 HEADER			= -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include
@@ -60,11 +63,17 @@ AR				= ar rcs
 SRC_FILES	=	main init_data
 CONSOLE 	=	console_init
 ENVP_LIST	=	envp_list_manage
+SIGNALS		=	signals_handler
+PARSER		=	handlers token_init parser_utils
+FREE		=	free_lsts
 PIPEX 		=	pipex
 
 
 SRC_FILES+=$(addprefix $(ENVP_LIST_DIR),$(ENVP_LIST))
 SRC_FILES+=$(addprefix $(CONSOLE_DIR),$(CONSOLE))
+SRC_FILES+=$(addprefix $(SIGS_DIR),$(SIGNALS))
+SRC_FILES+=$(addprefix $(PARSER_DIR),$(PARSER))
+SRC_FILES+=$(addprefix $(FREE_DIR),$(FREE))
 SRC_FILES+=$(addprefix $(PIPEX_DIR),$(PIPEX))
 
 # Files 
@@ -93,6 +102,9 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)
 			@mkdir -p $(OBJ_DIR)$(ENVP_LIST_DIR)
 			@mkdir -p $(OBJ_DIR)$(CONSOLE_DIR)
+			@mkdir -p $(OBJ_DIR)$(SIGS_DIR)
+			@mkdir -p $(OBJ_DIR)$(PARSER_DIR)
+			@mkdir -p $(OBJ_DIR)$(FREE_DIR)
 
 # Rules
 

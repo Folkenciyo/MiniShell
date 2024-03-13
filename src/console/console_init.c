@@ -1,33 +1,32 @@
 
 #include "minishell.h"
 
-// void sigint_handler(int sig) 
-// {
-//     printf("\nCtrl + C recibido. Saliendo de la consola.\n");
-//     exit(EXIT_SUCCESS);
-// }
-
-void console_init() 
+void console_init(t_data *data)
 {
     char* input;
     char *user;
-    // signal(SIGINT, sigint_handler); 
     user = ft_strjoin(getenv("USER"),"$ ");
-    // Bucle principal para leer y procesar entradas del usuario
+    
     while (1) 
     {
-        input = readline(user); // Mostrar un prompt para el usuario
+        signals_call();
+        input = readline(user);
         if (!input) 
-        { // Comprobar si el usuario ha terminado de ingresar la entrada
-            printf("\n");
+        {
+            printf("exit\n");
+            data->exit = 1;
             break;
         }
-        if (ft_strncmp(input,"clear",5) == 0)
-            printf("\033[H\033[2J");    
-        add_history(input); // Agregar la entrada a la historia para facilitar la navegación
-        // Aquí puedes procesar la entrada del usuario como desees
-        free(input); // Liberar la memoria asignada por readline
+
+        add_history(input);
+        token_maker(data,input);
+        if (*input != '\0')
+			add_history(input);
+        free(input);
+        free_token(&data->token_list);
         rl_on_new_line();
     }
+    free(user);
+    clear_history();
 
 }
