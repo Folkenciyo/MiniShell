@@ -37,7 +37,7 @@ int token_maker(t_data *data,char *str)
         */
        tmp++;
     }
-    print_token(data);
+    //print_token(data);
     
     return (1);
 }

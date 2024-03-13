@@ -66,7 +66,7 @@ ENVP_LIST	=	envp_list_manage
 SIGNALS		=	signals_handler
 PARSER		=	handlers token_init parser_utils
 FREE		=	free_lsts
-PIPEX 		=	pipex
+PIPEX 		=	ft_pipex
 
 
 SRC_FILES+=$(addprefix $(ENVP_LIST_DIR),$(ENVP_LIST))
@@ -102,6 +102,7 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)
 			@mkdir -p $(OBJ_DIR)$(ENVP_LIST_DIR)
 			@mkdir -p $(OBJ_DIR)$(CONSOLE_DIR)
+			@mkdir -p $(OBJ_DIR)$(PIPEX_DIR)
 			@mkdir -p $(OBJ_DIR)$(SIGS_DIR)
 			@mkdir -p $(OBJ_DIR)$(PARSER_DIR)
 			@mkdir -p $(OBJ_DIR)$(FREE_DIR)

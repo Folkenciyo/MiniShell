@@ -13,6 +13,7 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
+/* EXIT & ERROR MANAGE */
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 # define WRONG_ARG 2

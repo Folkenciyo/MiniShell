@@ -32,7 +32,7 @@ void word_handler(t_data *data, char **str)
 					&& *(*str + 1) != '&')))
 			(*str)++;
 		tmp = ft_strndup(start, *str + 1 - start);
-        printf("tmp :%s\n",tmp);
+        //printf("tmp :%s\n",tmp);
 		fill_token(data, TKN_WORD, tmp);
 	}
     free(tmp);
