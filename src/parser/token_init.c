@@ -1,0 +1,58 @@
+#include "minishell.h"
+
+void    fill_token(t_data *data, int key, char *value)
+{
+    t_token	*token;
+
+	token = ft_tokennew(key, value);
+  
+    if (!data->token_list)
+        ft_tokenadd_front(&data->token_list,token);
+    else
+        ft_tokenadd_back(&data->token_list,token);
+}
+
+int token_maker(t_data *data,char *str)
+{
+    char    *tmp;
+
+    tmp = str;
+
+    while(*tmp)
+    {
+        // if (is_space(*tmp))
+        //     space_handler(data,&tmp); 
+        if (!special_chars(*tmp))
+            word_handler(data,&tmp);
+        else if (*tmp == '>' || *tmp == '<')
+            redir_handler(data,&tmp);
+        /*
+            if redir_out
+
+            if redir in
+
+            if quotes
+
+            if pipe
+        */
+       tmp++;
+    }
+    print_token(data);
+    
+    return (1);
+}
+
+void print_token(t_data *data)
+{
+    t_token *token;
+    token = data->token_list;
+    while (token)
+    {
+        
+        printf("key : %d\n",token->key);
+        printf("content : %s\n",token->content);
+        printf("len : %d\n",token->len);
+        printf("--------------------------------------------\n");
+        token = token->next;
+    }
+}

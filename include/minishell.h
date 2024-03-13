@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/05 20:26:12 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:52:34 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
+# include "defines.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -61,7 +62,7 @@ typedef struct s_data
 	int					exit;
 	char				**envp;
 	t_env_list			*envp_list;
-	// t_token	*token;
+	t_token				*token_list;
 	t_cmd				*cmd_list;
 }						t_data;
 
@@ -75,6 +76,35 @@ t_env_list				*envp_list_new(char *key, char *value);
 t_env_list				*envp_list_add_back(t_env_list *lst, t_env_list *new);
 void					envp_list_add_front(t_env_list *lst, t_env_list *new);
 
-void					console_init(void);
+//****** CONSOLE INIT*****/
+//console_init.c
+void					console_init(t_data *data);
+
+//*****SIGNALS HANDLER*****/
+//signals_handler.c
+void					signals_call(void);
+
+
+//*******TOKEN FILL*********/
+//token_init.c
+void    fill_token(t_data *data, int key, char *value);
+int     token_maker(t_data *data,char *str);
+
+/*UTILS FOR THE PARSER*/
+//parser_utils.c
+int special_chars(char c);
+int is_space(char c);
+
+/******CHARACTER HANDLERS(TOKENIZER)*****/
+//handlers.c
+void space_handler(t_data *data, char **str);
+void word_handler(t_data *data, char **str);
+void redir_handler(t_data *data,char **str);
+
+/********FUNCION TEMPORAL print_token*******/
+void print_token(t_data *data);
+
+/****FREE LISTS****/
+void free_token(t_token **token);
 
 #endif

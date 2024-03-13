@@ -23,3 +23,17 @@ t_list	*ft_lstnew(void *content)
 	new_node->next = NULL;
 	return (new_node);
 }
+
+t_token	*ft_tokennew(int key,char *content)
+{
+	t_token	*new_node;
+
+	new_node = (t_token *)malloc(sizeof(t_token));
+	if (!new_node)
+		return (0);
+	new_node->key = key;
+	new_node->content = ft_strdup(content);
+	new_node->len = ft_strlen(new_node->content);
+	new_node->next = NULL;
+	return (new_node);
+}

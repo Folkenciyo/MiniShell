@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:02:06 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/05 20:12:41 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:08:21 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int	main(int argc, char **argv, char **envp)
 	if (!data)
 		return (printf("\033[0;31mError:\t\033[0;21mMalloc failed\n\033[0;m"));
 	init_data(data, envp);
+	console_init(data);
 	return (0);
 }
