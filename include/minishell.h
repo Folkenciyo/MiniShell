@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/13 12:12:51 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:11:43 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,10 @@ int is_space(char c);
 
 /******CHARACTER HANDLERS(TOKENIZER)*****/
 //handlers.c
-void space_handler(t_data *data, char **str);
-void word_handler(t_data *data, char **str);
-void redir_handler(t_data *data,char **str);
+void	space_handler(t_data *data, char **str);
+void	word_handler(t_data *data, char **str);
+void	redir_handler(t_data *data,char **str);
+void	quotes_handler(t_data *data, char **str);
 
 /********FUNCION TEMPORAL print_token*******/
 void print_token(t_data *data);

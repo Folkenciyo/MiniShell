@@ -26,18 +26,14 @@ int token_maker(t_data *data,char *str)
             word_handler(data,&tmp);
         else if (*tmp == '>' || *tmp == '<')
             redir_handler(data,&tmp);
-        /*
-            if redir_out
-
-            if redir in
-
-            if quotes
-
-            if pipe
-        */
+        else if (*tmp == '\'' || *tmp == '\"')
+            quotes_handler(data,&tmp);
+        else if (*tmp == '|')
+            fill_token(data,TKN_PIPE,"|");
+        
        tmp++;
     }
-    //print_token(data);
+    // print_token(data);
     
     return (1);
 }

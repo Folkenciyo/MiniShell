@@ -30,5 +30,4 @@
 # define TKN_WORD 8 // word
 # define TKN_SP 9 // any type of space
 
-
 #endif
