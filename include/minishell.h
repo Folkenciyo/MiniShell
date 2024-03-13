@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/13 16:24:44 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:11:43 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
  * instrucciones desde un archivo o desde la entrada estándar,
  * ejecuta estas instrucciones en secuencia y luego finaliza.
  */
-int						g_batch_mode_flag;
+//int						g_batch_mode_flag;
 
 typedef struct s_env_list
 {

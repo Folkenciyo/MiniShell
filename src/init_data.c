@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:01:53 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/12 14:25:00 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:13:17 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

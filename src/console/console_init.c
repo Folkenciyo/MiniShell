@@ -7,7 +7,7 @@ void console_init(t_data *data)
     char *user;
     user = ft_strjoin(getenv("USER"),"$ ");
     
-    while (1) 
+    while (!data->exit) 
     {
         signals_call();
         input = readline(user);
