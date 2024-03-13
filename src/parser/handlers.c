@@ -32,7 +32,6 @@ void word_handler(t_data *data, char **str)
 					&& *(*str + 1) != '&')))
 			(*str)++;
 		tmp = ft_strndup(start, *str + 1 - start);
-        printf("tmp :%s\n",tmp);
 		fill_token(data, TKN_WORD, tmp);
 	}
     free(tmp);
@@ -62,6 +61,31 @@ void redir_handler(t_data *data,char **str)
         else
             fill_token(data,TKN_REDIR_IN,"<");
     }
-    
-
 }
+
+
+void    quotes_handler(t_data *data, char **str)
+{
+    char	*tmp;
+    char	*start;
+    char	quote;
+
+    tmp = NULL;
+	quote = **str;
+	start = ++(*str);
+
+    while (**str && **str != quote)
+		(*str)++;
+	if (**str == quote)
+	{
+	tmp = ft_strndup(start,*str - start);
+	if (quote == '\"')
+		fill_token(data,TKN_SQUOTES,tmp);
+	else if (quote == '\'')
+		fill_token(data,TKN_DQUOTES,tmp);
+	}
+	else
+		ft_putstr_fd("Quotes are not closed\n",2);
+	free(tmp);
+}
+

@@ -12,5 +12,9 @@
 # define TKN_WORD 8 // word
 # define TKN_SP 9 // any type of space
 
-
+/*EXIT AND ERROR MANAGE*/
+# define EXIT_SUCCES 0
+# define EXIT_FAILURE 1
+# define WRONG_ARG 2
+# define MALLOC_ERROR 3
 #endif
