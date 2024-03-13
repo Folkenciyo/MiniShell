@@ -20,7 +20,7 @@ t_env_list	*envp_list_new(char *key, char *value)
 	if (!new)
 	{
 		printf("\033[0;31mError:\t\033[0;21mMalloc failed\n\033[0;m");
-		exit(1);
+		exit(MALLOC_ERROR);
 	}
 	new->key = ft_strdup(key);
 	new->value = ft_strdup(value);

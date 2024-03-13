@@ -43,6 +43,7 @@ INCLUDE			= include/
 LIBFT			= libft
 SRC_DIR			= src/
 CONSOLE_DIR		= console/
+PIPEX_DIR		= pipex/
 ENVP_LIST_DIR	= envp_list/
 OBJ_DIR			= obj/
 CC				= gcc
@@ -59,11 +60,12 @@ AR				= ar rcs
 SRC_FILES	=	main init_data
 CONSOLE 	=	console_init
 ENVP_LIST	=	envp_list_manage
+PIPEX 		=	pipex
 
 
 SRC_FILES+=$(addprefix $(ENVP_LIST_DIR),$(ENVP_LIST))
 SRC_FILES+=$(addprefix $(CONSOLE_DIR),$(CONSOLE))
-
+SRC_FILES+=$(addprefix $(PIPEX_DIR),$(PIPEX))
 
 # Files 
 

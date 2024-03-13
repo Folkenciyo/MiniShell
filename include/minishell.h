@@ -16,6 +16,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
+# include "defines.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -36,7 +37,7 @@
  * instrucciones desde un archivo o desde la entrada estándar,
  * ejecuta estas instrucciones en secuencia y luego finaliza.
  */
-int						g_batch_mode_flag;
+//int						g_batch_mode_flag;
 
 typedef struct s_env_list
 {
