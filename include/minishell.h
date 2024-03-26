@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/13 18:11:43 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:11:14 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void    fill_token(t_data *data, int key, char *value);
 int     token_maker(t_data *data,char *str);
 
 /*UTILS FOR THE PARSER*/
+
 //parser_utils.c
 int special_chars(char c);
 int is_space(char c);
@@ -108,4 +109,6 @@ void print_token(t_data *data);
 /****FREE LISTS****/
 void free_token(t_token **token);
 
+
+char	*envp_value(t_data *data, char *str);
 #endif
