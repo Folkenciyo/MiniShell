@@ -7,28 +7,31 @@ char	*envp_key(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '\'')
+	if (ft_isdigit(*str))
+		return (ft_strndup(str, i));
+	while (str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '\''
+		&& str[i] != '\"')
 		i++;
 	return (ft_strndup(str, i));
 }
 
 char	*envp_value(t_data *data, char *str)
 {
-	t_env_list *env;
-	char *key;
-	
+	t_env_list	*env;
+	char		*key;
+
 	key = envp_key(str);
 	env = data->envp_list;
 	while (env)
 	{
-		if (env->key && ft_strncmp(env->key, key, ft_strlen(key)))
-			return (env->value);
+		if (env->key && !ft_strncmp(env->key, key, ft_strlen(key)))
+			break ;
 		env = env->next;
 	}
 	if (!env)
 		return (NULL);
 	free(key);
-	return(env->value);
+	return (ft_strndup(env->value, ft_strlen(env->value)));
 }
 
 int	valid_key(char c)
