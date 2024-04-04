@@ -70,4 +70,6 @@ void	expand(t_data *data, char *input)
 	}
 	if (value && key)
 		change_token_value(data, key, value);
+	free(value);
+	free(key);
 }
