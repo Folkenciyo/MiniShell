@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 18:15:41 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/13 18:27:18 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:13:28 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,18 @@ int	token_maker(t_data *data, char *str)
 	char	*tmp;
 
 	tmp = str;
-
 	while (*tmp)
 	{
-		// if (is_space(*tmp))
-		//     space_handler(data,&tmp); 
 		if (!special_chars(*tmp))
-			word_handler(data,&tmp);
+			word_handler(data, &tmp);
 		else if (*tmp == '>' || *tmp == '<')
-			redir_handler(data,&tmp);
+			redir_handler(data, &tmp);
 		else if (*tmp == '\'' || *tmp == '\"')
-			quotes_handler(data,&tmp);
+			quotes_handler(data, &tmp);
 		else if (*tmp == '|')
-			fill_token(data,TKN_PIPE,"|");
+			fill_token(data, TKN_PIPE, "|");
 		tmp++;
 	}
-	// print_token(data);
 	return (1);
 }
 
@@ -54,9 +50,9 @@ void	print_token(t_data *data)
 	token = data->token_list;
 	while (token)
 	{
-		printf("key : %d\n",token->key);
-		printf("content : %s\n",token->content);
-		printf("len : %d\n",token->len);
+		printf("key : %d\n", token->key);
+		printf("content : %s\n", token->content);
+		printf("len : %d\n", token->len);
 		printf("--------------------------------------------\n");
 		token = token->next;
 	}
