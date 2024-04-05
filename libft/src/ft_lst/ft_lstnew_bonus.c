@@ -24,7 +24,7 @@ t_list	*ft_lstnew(void *content)
 	return (new_node);
 }
 
-t_token	*ft_tokennew(int key,char *content)
+t_token	*ft_tokennew(int key, char *content)
 {
 	t_token	*new_node;
 

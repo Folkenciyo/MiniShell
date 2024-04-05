@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/13 18:11:43 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:14:08 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "defines.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
-# include "defines.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -84,28 +84,36 @@ void					console_init(t_data *data);
 //signals_handler.c
 void					signals_call(void);
 
-
 //*******TOKEN FILL*********/
 //token_init.c
-void    fill_token(t_data *data, int key, char *value);
-int     token_maker(t_data *data,char *str);
+void					fill_token(t_data *data, int key, char *value);
+int						token_maker(t_data *data, char *str);
 
 /*UTILS FOR THE PARSER*/
+
 //parser_utils.c
-int special_chars(char c);
-int is_space(char c);
+int						special_chars(char c);
+int						is_space(char c);
 
 /******CHARACTER HANDLERS(TOKENIZER)*****/
 //handlers.c
-void	space_handler(t_data *data, char **str);
-void	word_handler(t_data *data, char **str);
-void	redir_handler(t_data *data,char **str);
-void	quotes_handler(t_data *data, char **str);
+void					space_handler(t_data *data, char **str);
+void					word_handler(t_data *data, char **str);
+void					redir_handler(t_data *data, char **str);
+void					quotes_handler(t_data *data, char **str);
+
+/****EXPANSION CORE*******/
+char					*envp_key(char *str);
+char					*envp_value(t_data *data, char *str);
+char					*get_env_value(t_data *data, char **input);
+int						get_new_len(t_data *data, char *str);
+int						valid_key(char c);
+void					expand(t_data *data, char *input);
 
 /********FUNCION TEMPORAL print_token*******/
-void print_token(t_data *data);
+void					print_token(t_data *data);
 
 /****FREE LISTS****/
-void free_token(t_token **token);
+void					free_token(t_token **token);
 
 #endif
