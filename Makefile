@@ -66,7 +66,7 @@ ENVP_LIST	=	envp_list_manage
 SIGNALS		=	signals_handler
 PARSER		=	handlers token_init parser_utils
 FREE		=	free_lsts
-PIPEX 		=	ft_pipex
+PIPEX 		=	ft_pipex pipex_fd_builts_utils
 
 
 SRC_FILES+=$(addprefix $(ENVP_LIST_DIR),$(ENVP_LIST))
@@ -84,6 +84,17 @@ OBJS 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 ###
 
 OBJF		=	.cache_exists
+
+#########################################################
+##PRUEBA##
+pipex:
+			@make -C $(LIBFT)
+			@cp libft/libft.a .
+			@mv libft.a PIPEX
+			@$(CC) $(SRC_DIR)$(PIPEX_DIR)ft_pipex.c -o $(NAME) $(LIBFT)/libft.a $(HEADER) 
+			@echo "$(GREEN)MiniShell compiled!$(DEF_COLOR)"
+
+#########################################################
 
 all:		$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/13 18:11:43 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:59:22 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,25 +87,36 @@ void					signals_call(void);
 
 //*******TOKEN FILL*********/
 //token_init.c
-void    fill_token(t_data *data, int key, char *value);
-int     token_maker(t_data *data,char *str);
+void					fill_token(t_data *data, int key, char *value);
+int						token_maker(t_data *data,char *str);
 
 /*UTILS FOR THE PARSER*/
 //parser_utils.c
-int special_chars(char c);
-int is_space(char c);
+int						special_chars(char c);
+int						is_space(char c);
 
 /******CHARACTER HANDLERS(TOKENIZER)*****/
 //handlers.c
-void	space_handler(t_data *data, char **str);
-void	word_handler(t_data *data, char **str);
-void	redir_handler(t_data *data,char **str);
-void	quotes_handler(t_data *data, char **str);
+void					space_handler(t_data *data, char **str);
+void					word_handler(t_data *data, char **str);
+void					redir_handler(t_data *data, char **str);
+void					quotes_handler(t_data *data, char **str);
+
+/************PIPEX************/
+//pipex.c
+void					pipex(t_data *data);
+int						ft_exec_cmd(t_data *data, t_cmd *list, int cmd_number);
+
+//pipex_fd_builts_utils.c
+int						ft_list_len(t_cmd *list);
+int						ft_built_in(t_info *info, t_cmd *node);
+int						ft_cmd_is_built_in(t_data *data, char *str);
+void					ft_redir_fd_std(int fd, int std, int fd2);
 
 /********FUNCION TEMPORAL print_token*******/
-void print_token(t_data *data);
+void					print_token(t_data *data);
 
 /****FREE LISTS****/
-void free_token(t_token **token);
+void					free_token(t_token **token);
 
 #endif
