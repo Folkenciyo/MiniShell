@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:02:06 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/01 15:29:18 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:45:53 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(int argc, char **argv, char **envp)
 		return (printf("\033[0;31mError:\t\033[0;21mMalloc failed\n\033[0;m"));
 	init_data(data, envp);
 	console_init(data);
-	return (0);
+	free_token(&data->token_list);
+	exit(258);
 }
