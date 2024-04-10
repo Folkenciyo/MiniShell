@@ -68,7 +68,7 @@ ENVP_LIST	=	envp_list_manage
 SIGNALS		=	signals_handler
 PARSER		=	handlers token_init parser_utils cmd_init
 EXPANSION	=	expansion utils
-CMD			=	cmd_init cmd_fill
+CMD			=	cmd_init cmd_fill utils
 FREE		=	free_lsts
 PIPEX 		=	ft_pipex
 

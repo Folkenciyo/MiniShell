@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/03 21:14:08 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:30:44 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,12 @@ char					*get_env_value(t_data *data, char **input);
 int						get_new_len(t_data *data, char *str);
 int						valid_key(char c);
 void					expand(t_data *data, char *input);
+
+/****CMD FILL CORE*******/
+t_cmd   *new_cmd();
+void add_cmd_back(t_cmd **cmd,t_cmd *new_cmd);
+int	unexpected_token(t_token *token);
+
 
 /********FUNCION TEMPORAL print_token*******/
 void					print_token(t_data *data);
