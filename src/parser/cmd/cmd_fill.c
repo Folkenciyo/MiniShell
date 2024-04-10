@@ -17,7 +17,7 @@ void add_word_cmd(t_cmd **new, t_token **token)
 {
 	while(*token && (*token)->key == TKN_WORD)
 	{
-		
+		(*new)->command = 
 	}
 }
 

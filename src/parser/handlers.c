@@ -79,6 +79,9 @@ void	quotes_handler(t_data *data, char **str)
 			fill_token(data, TKN_SQUOTES, tmp);
 	}
 	else
+	{
 		ft_putstr_fd("Quotes are not closed\n", 2);
+		free_token(&data->token_list);
+	}
 	free(tmp);
 }
