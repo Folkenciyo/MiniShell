@@ -66,7 +66,8 @@ SRC_FILES	=	main init_data
 CONSOLE 	=	console_init
 ENVP_LIST	=	envp_list_manage
 SIGNALS		=	signals_handler
-PARSER		=	handlers token_init parser_utils cmd_init
+PARSER		=	handlers token_init parser_utils cmd_init handle_redir \
+				handle_here_doc
 EXPANSION	=	expansion utils
 CMD			=	cmd_init cmd_fill utils
 FREE		=	free_lsts
