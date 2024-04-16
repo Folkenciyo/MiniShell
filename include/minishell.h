@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/10 12:30:44 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:58:47 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,9 @@ void					expand(t_data *data, char *input);
 t_cmd   *new_cmd();
 void add_cmd_back(t_cmd **cmd,t_cmd *new_cmd);
 int	unexpected_token(t_token *token);
+
+/****HERDE DOC HANDLERS***/
+int here_doc_status(t_cmd *cmd, t_token *token):
 
 
 /********FUNCION TEMPORAL print_token*******/

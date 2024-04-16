@@ -28,7 +28,7 @@ int here_doc(t_cmd *cmd, char *here_doc)
 }
 
 
-int her_doc_status(t_cmd *cmd, t_token *token)
+int here_doc_status(t_cmd *cmd, t_token *token)
 {
 	if(here_doc(cmd, token->next->content) == -1)
 		return(-1);
