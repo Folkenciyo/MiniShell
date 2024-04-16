@@ -114,6 +114,7 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)$(SIGS_DIR)
 			@mkdir -p $(OBJ_DIR)$(PARSER_DIR)
 			@mkdir -p $(OBJ_DIR)$(EXPANSION_DIR)
+			@mkdir -p $(OBJ_DIR)$(CMD_DIR)
 			@mkdir -p $(OBJ_DIR)$(FREE_DIR)
 
 # Rules

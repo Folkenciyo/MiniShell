@@ -21,3 +21,27 @@ int	unexpected_token(t_token *token)
 	}
 	return(0);
 }
+
+char	**add_to_array(char **arr, char *new_str)
+{
+	size_t	i;
+	size_t	j;
+	char	**new_arr;
+
+	i = 0;
+	j = 0;
+	while (arr && arr[i])
+		i++;
+	new_arr = ft_calloc(i + 2, sizeof(char *));
+	if (!new_arr)
+		return (NULL);
+	while (j < i)
+	{
+		new_arr[j] = arr[j];
+		j++;
+	}
+	new_arr[i] = new_str;
+	new_arr[i + 1] = NULL;
+	free(arr);
+	return (new_arr);
+}

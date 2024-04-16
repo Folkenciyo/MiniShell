@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/16 17:58:47 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:48:51 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct s_cmd
 {
 	char				**comand;
 	char				**choosen_path;
-	int					*fd_in;
-	int					*fd_out;
+	int					fd_in;
+	int					fd_out;
 	struct s_cmd		*next;
 }						t_cmd;
 
@@ -114,9 +114,14 @@ void					expand(t_data *data, char *input);
 t_cmd   *new_cmd();
 void add_cmd_back(t_cmd **cmd,t_cmd *new_cmd);
 int	unexpected_token(t_token *token);
+char	**add_to_array(char **arr, char *new_str);
+
+/****REDIR_HANDLERS****/
+
+
 
 /****HERDE DOC HANDLERS***/
-int here_doc_status(t_cmd *cmd, t_token *token):
+int here_doc_status(t_cmd *cmd, t_token *token);
 
 
 /********FUNCION TEMPORAL print_token*******/

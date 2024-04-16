@@ -40,6 +40,7 @@ int redir_out(t_token *token,t_cmd *cmd)
 	if (cmd->fd_out == -1)
 		return(-1);
 	token=token->next;
+	return(0);
 }
 
 int handle_redirections(t_cmd *cmd,int *fd_in, t_token **token)
@@ -52,10 +53,11 @@ int handle_redirections(t_cmd *cmd,int *fd_in, t_token **token)
 	if ((*token)->key == TKN_PIPE)
 		return(handle_pipe(cmd,fd_in));
 	else if ((*token)->key == TKN_REDIR_IN)
-		return(redir_in(token,cmd));
+		return(redir_in(*token,cmd));
 	else if ((*token)->key == TKN_REDIR_OUT 
 			|| (*token)->key == TKN_REDIR_APPEND)
-		return(redir_out(token,cmd));
+		return(redir_out(*token,cmd));
 	else if ((*token)->key == TKN_REDIR_SOURCE)
-		return(here_doc_status(cmd,token));
+		return(here_doc_status(cmd,*token));
+	return (0);
 }

@@ -13,18 +13,20 @@ void new_cmd_if(t_cmd **cmd_lst,t_cmd **new, int key)
 	}
 }
 
-void add_word_cmd(t_cmd **new, t_token **token)
+void add_word_cmd(t_cmd **new, t_token **token, int *status, int *fd_in)
 {
 	while(*token && (*token)->key == TKN_WORD)
 	{
-		(*new)->command = 
+		(*new)->comand = add_to_array((*new)->comand,(*token)->content);
+        if (!(*token)->next 
+            && handle_redirections(*new,fd_in,token))
+        {
+            *status = 1;
+            break ;
+        }
+        *token = (*token)->next;
 	}
 }
-
-//VER SI EN LA MISTA NEW CMD PUEDO LLAMAR A LA FUNCION QUE ME CREE TAMBIEN
-//EL STRING DE LA CMD
-
-//comand to string
 
 void    cmd_create(t_data *data)
 {
@@ -40,7 +42,7 @@ void    cmd_create(t_data *data)
 	while (token && !status)
 	{
 		new_cmd_if(&data->cmd_list,&new,token->key);
-		// add_word_cmd(t_cmd **new, t_token **token);
+		add_word_cmd(&new, &token,&status,&fd_in);
 	}
 	
 }

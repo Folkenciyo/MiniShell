@@ -19,7 +19,7 @@ void add_cmd_back(t_cmd **cmd,t_cmd *new_cmd)
 
     tmp = *cmd;
 
-    if (!*cmd == NULL)
+    if (*cmd == NULL)
         *cmd = new_cmd;
     else
     {
