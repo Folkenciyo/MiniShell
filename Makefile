@@ -44,6 +44,7 @@ LIBFT			= libft
 SRC_DIR			= src/
 CONSOLE_DIR		= console/
 PIPEX_DIR		= pipex/
+BUILDINS_DIR	= buildin/
 ENVP_LIST_DIR	= envp_list/
 PARSER_DIR		= parser/
 EXPANSION_DIR	= parser/expansion/
@@ -65,14 +66,17 @@ SRC_FILES	=	main init_data
 CONSOLE 	=	console_init
 ENVP_LIST	=	envp_list_manage
 SIGNALS		=	signals_handler
+BUILDINS	=	cd cd_utils tupla_utils tupla_utils2 export export_utils\
+				export_utils2 env env_utils refill_env_lst echo exit unset pwd
 PARSER		=	handlers token_init parser_utils
 EXPANSION	=	expansion utils
 FREE		=	free_lsts
-PIPEX 		=	ft_pipex
+PIPEX 		=	ft_pipex pipex_utils pipex_fd_builts_utils
 
 
 
 SRC_FILES+=$(addprefix $(ENVP_LIST_DIR),$(ENVP_LIST))
+SRC_FILES+=$(addprefix $(BUILDINS_DIR),$(BUILDINS))
 SRC_FILES+=$(addprefix $(CONSOLE_DIR),$(CONSOLE))
 SRC_FILES+=$(addprefix $(SIGS_DIR),$(SIGNALS))
 SRC_FILES+=$(addprefix $(PARSER_DIR),$(PARSER))
@@ -88,6 +92,17 @@ OBJS 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 ###
 
 OBJF		=	.cache_exists
+
+#########################################################
+##PRUEBA##
+pipex:
+			@make -C $(LIBFT)
+			@cp libft/libft.a .
+			@mv libft.a PIPEX
+			@$(CC) $(SRC_DIR)$(PIPEX_DIR)ft_pipex.c -o $(NAME) $(LIBFT)/libft.a $(HEADER) 
+			@echo "$(GREEN)MiniShell compiled!$(DEF_COLOR)"
+
+#########################################################
 
 all:		$(NAME)
 
@@ -108,6 +123,7 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)$(CONSOLE_DIR)
 			@mkdir -p $(OBJ_DIR)$(PIPEX_DIR)
 			@mkdir -p $(OBJ_DIR)$(SIGS_DIR)
+			@mkdir -p $(OBJ_DIR)$(BUILDINS_DIR)
 			@mkdir -p $(OBJ_DIR)$(PARSER_DIR)
 			@mkdir -p $(OBJ_DIR)$(EXPANSION_DIR)
 			@mkdir -p $(OBJ_DIR)$(FREE_DIR)

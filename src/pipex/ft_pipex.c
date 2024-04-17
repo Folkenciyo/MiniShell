@@ -10,26 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell.h";
 
-// int	ft_pipex(t_data *data)
-// {
-// 	t_cmd	*list;
-// 	int		status;
-// 	int		cmd_number;
+int	ft_exec_cmd(t_data *data, t_cmd *list, int cmd_number)
+{
+	int	status;
 
-// 	list = data->cmd_lst;
-// 	status = 0;
-// 	cmd_number = 0;
-// 	if (ft_lst_size(list) > 1)
-// 		cmd_number = 1;
-// 	while (list)
-// 	{
-// 		status = ft_exec_cmd(data, list, cmd_number); // Ejecuta el comando actual y guarda el estado
-// 		g_batch_flag = 0; // Asigna 0 a la variable global g_batch_flag
-// 		data->status = status; // Asigna el estado a la propiedad status de la estructura data
-// 		list = list->next; // Avanza al siguiente elemento en la lista de comandos
-// 		cmd_number++; // Incrementa el contador de comandos
-// 	}
-// 	return (EXIT_SUCCESS); // Retorna EXIT_SUCCESS (generalmente 0) al finalizar
-// }
+	status = 0;
+	if (!list->comand[0])
+		return (COMMAND_NULL);
+	else if (ft_cmd_is_built_in(data, list->comand[0]) == TRUE
+		&& cmd_number == 0)
+	{
+		status = ft_built_in(data, list->comand);
+		ft_close_fd(list);
+		return (status);
+	}
+/* 	else
+	{
+		g_batch_flag = 1;
+		return (ft_fork(data, list, cmd_number));
+	}*/
+	return (status);
+}
+
+int	ft_pipex(t_data *data)
+{
+	t_cmd	*list;
+	int		status;
+	int		cmd_number;
+
+	list = data->cmd_lst;
+	status = 0;
+	cmd_number = 0;
+	if (ft_lst_size(list) > 1)
+		cmd_number = 1;
+	while (list)
+	{
+		status = ft_exec_cmd(data, list, cmd_number); 
+		g_batch_flag = 0;
+		data->status = status;
+		list = list->next;
+		cmd_number++;
+	}
+	return (EXIT_SUCCESS);
