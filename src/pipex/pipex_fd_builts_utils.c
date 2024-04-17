@@ -12,23 +12,23 @@
 
 #include "minishell.h"
 
-int	ft_exec_builtin(t_info *info, char **cmd)
+int	ft_exec_builtin(t_data *data, char **cmd)
 {
 	if (ft_strncmp("cd", cmd[0], 2) == 0 && cmd[0][2] == '\0')
-		return (cd(info, cmd));
+		return (cd(data, cmd));
 	else if (ft_strncmp("echo", cmd[0], 4) == 0 && cmd[0][4] == '\0')
 		return (echo(cmd));
 	else if (ft_strncmp("env", cmd[0], 3) == 0 && cmd[0][3] == '\0')
-		return (env(info, cmd));
+		return (env(data, cmd));
 	else if (ft_strncmp("exit", cmd[0], 4) == 0 && cmd[0][4] == '\0')
-		return (exit1(info, cmd));
+		return (exit1(data, cmd));
 	else if (ft_strncmp("export", cmd[0], 6) == 0 && cmd[0][6] == '\0')
-		return (export(info, cmd));
+		return (export(data, cmd));
 	else if (ft_strncmp("pwd", cmd[0], 3) == 0 && cmd[0][3] == '\0')
 		return (pwd(cmd));
 	else if (ft_strncmp("unset", cmd[0], 5) == 0 && cmd[0][5] == '\0')
-		return (unset(info, cmd));
-	return (COMMAND_NOT_FOUND);
+		return (unset(data, cmd));
+	return (COMMAND_NULL);
 }
 
 void	ft_redir_fd_std(int fd, int std, int fd2)
@@ -42,18 +42,18 @@ void	ft_redir_fd_std(int fd, int std, int fd2)
 }
 
 
-int	ft_built_in(t_info *info, t_cmd *node)
+int	ft_built_in(t_data *data, t_cmd *node)
 {
-	int	status;     // Variable para almacenar el estado de las operaciones
-	int	original_fd_out;  // Guarda el descriptor de archivo original para stdout
-	int	original_fd_in;   // Guarda el descriptor de archivo original para stdin
+	int	status;
+	int	original_fd_out;
+	int	original_fd_in;
 
 	original_fd_out = dup(STDOUT);
 	original_fd_in = dup(STDIN);
 	status = 0;
 	ft_redir_fd_std(node->fd_in, STDIN, node->fd_in);
 	ft_redir_fd_std(node->fd_out, STDOUT, node->fd_out);
-	status = ft_exec_builtin(info, node->command);
+	status = ft_exec_builtin(data, node->command);
 	ft_redir_fd_std(node->fd_in, STDIN, original_fd_in);
 	ft_redir_fd_std(node->fd_out, STDOUT, original_fd_out);
 	return (status);

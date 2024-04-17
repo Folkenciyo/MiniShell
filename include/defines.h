@@ -27,6 +27,11 @@
 # define STDERR 2
 # define NO_FD -2
 
+/* UNABLE */
+# define FORK_ERROR "Unable to fork"
+# define REDIR_ERROR "Unable to redirect"
+# define EXEC_ERROR "Unable to execute"
+
 /* BOOLEAN */
 # define TRUE 1
 # define FALSE 0
@@ -41,5 +46,8 @@
 # define TKN_REDIR_SOURCE 7 // << here_doc
 # define TKN_WORD 8 // word
 # define TKN_SP 9 // any type of space
+
+/* PATH*/
+# define PATH_SIZE 4097
 
 #endif
