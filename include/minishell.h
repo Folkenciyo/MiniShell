@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/16 19:48:51 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/17 20:23:40 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@ int	unexpected_token(t_token *token);
 char	**add_to_array(char **arr, char *new_str);
 
 /****REDIR_HANDLERS****/
-
+int handle_redirections(t_cmd *cmd,int *fd_in, t_token **token);
+void    cmd_create(t_data *data);
 
 
 /****HERDE DOC HANDLERS***/
@@ -126,6 +127,7 @@ int here_doc_status(t_cmd *cmd, t_token *token);
 
 /********FUNCION TEMPORAL print_token*******/
 void					print_token(t_data *data);
+void print_cmd(t_cmd *cmd);
 
 /****FREE LISTS****/
 void					free_token(t_token **token);

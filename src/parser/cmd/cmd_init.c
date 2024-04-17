@@ -29,3 +29,22 @@ void add_cmd_back(t_cmd **cmd,t_cmd *new_cmd)
         tmp->next = new_cmd;
     }
 }
+
+//TERMINA ESTA FUNCION CABEZA BUQUE
+void print_cmd(t_cmd *cmd)
+{
+    int i;
+
+    while (cmd)
+    {
+        i = 0;
+        while (cmd->comand[i])
+        {
+            printf("comand[%d]: %s\n", i, cmd->comand[i]);
+            i++;
+        }
+        printf("fd_in: %d\n", cmd->fd_in);
+        printf("fd_out: %d\n", cmd->fd_out);
+        cmd = cmd->next;
+    }
+}	
