@@ -17,7 +17,7 @@ void add_word_cmd(t_cmd **new, t_token **token, int *status, int *fd_in)
 {
 	while(*token && (*token)->key == TKN_WORD)
 	{
-		(*new)->comand = add_to_array((*new)->comand,(*token)->content);
+		(*new)->comand = add_to_comand((*new)->comand,(*token)->content);
         if (!(*token)->next 
             && handle_redirections(*new,fd_in,token))
         {
@@ -43,6 +43,14 @@ void    cmd_create(t_data *data)
 	{
 		new_cmd_if(&data->cmd_list,&new,token->key);
 		add_word_cmd(&new, &token,&status,&fd_in);
+		if(token && handle_redirections(new,&fd_in,&token))
+		{
+			status = 1;
+			break ;
+		}
+		else if (token)
+			token = token->next;
 	}
-	
+	if (!redir_out_last(data->token_list))
+		change_cmd_out(data->cmd_list);
 }

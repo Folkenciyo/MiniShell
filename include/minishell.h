@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/17 20:23:40 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:36:35 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,15 @@ void					expand(t_data *data, char *input);
 t_cmd   *new_cmd();
 void add_cmd_back(t_cmd **cmd,t_cmd *new_cmd);
 int	unexpected_token(t_token *token);
-char	**add_to_array(char **arr, char *new_str);
+char	**add_to_comand(char **arr, char *new_str);
 
 /****REDIR_HANDLERS****/
-int handle_redirections(t_cmd *cmd,int *fd_in, t_token **token);
-void    cmd_create(t_data *data);
+int		handle_redirections(t_cmd *cmd,int *fd_in, t_token **token);
+void	cmd_create(t_data *data);
+int	redir_out_last(t_token *token);
 
+/**CMD UTILS**/
+void change_cmd_out(t_cmd *cmd);
 
 /****HERDE DOC HANDLERS***/
 int here_doc_status(t_cmd *cmd, t_token *token);

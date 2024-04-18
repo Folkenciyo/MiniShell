@@ -47,4 +47,4 @@ void print_cmd(t_cmd *cmd)
         printf("fd_out: %d\n", cmd->fd_out);
         cmd = cmd->next;
     }
-}	
+}
