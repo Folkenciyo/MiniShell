@@ -30,7 +30,7 @@ void add_cmd_back(t_cmd **cmd,t_cmd *new_cmd)
     }
 }
 
-//TERMINA ESTA FUNCION CABEZA BUQUE
+
 void print_cmd(t_cmd *cmd)
 {
     int i;

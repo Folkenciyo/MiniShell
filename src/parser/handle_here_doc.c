@@ -13,12 +13,15 @@ int here_doc(t_cmd *cmd, char *here_doc)
 	while(3)
 	{
 		input = readline("> ");
-		if(input == NULL || (!input &&
-			!ft_strncmp(input, here_doc, ft_strlen(here_doc))))
+		if(!input ||
+			(!ft_strncmp(input, here_doc, ft_strlen(here_doc)) &&
+			!ft_strncmp(input, here_doc, ft_strlen(input))))
 			break;
 			
 		write(fd[1], input, ft_strlen(input));
 		write(fd[1], "\n", 1);
+		
+
 		free(input);
 	}
 	free(input);

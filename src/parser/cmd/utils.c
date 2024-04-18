@@ -4,8 +4,8 @@
 int	unexpected_token(t_token *token)
 {
 	if (token && token->key == TKN_PIPE)
-		return(256); //para que no salga por ninguna salida de error
-	while (token->next)
+		return(269); //para que no salga por ninguna salida de error
+	while (token)
 	{
 		if ((token->key == TKN_PIPE 
 			|| token->key == TKN_REDIR_APPEND
@@ -45,7 +45,7 @@ char	**add_to_comand(char **arr, char *new_str)
 
 int	redir_out_last(t_token *token)
 {
-	while (token->next)
+	while (token)
 	{
 		if ((token->key == TKN_REDIR_OUT|| token->key == TKN_REDIR_APPEND)
 				&& (token->next && !token->next->next))
@@ -57,7 +57,7 @@ int	redir_out_last(t_token *token)
 
 void change_cmd_out(t_cmd *cmd)
 {
-	while (cmd->next)
+	while (cmd)
 	{
 		if (!cmd->next)
 		{
