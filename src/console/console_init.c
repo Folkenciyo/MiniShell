@@ -26,7 +26,7 @@ void	console_init(t_data *data)
 		if (*input != '\0')
 			add_history(input);
 		free(input);
-		//free_token(&data->token_list);
+		// free_token(&data->token_list);
 		rl_on_new_line();
 	}
 	free(user);
