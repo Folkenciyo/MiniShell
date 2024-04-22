@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/22 13:55:15 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:36:45 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,6 @@ void print_cmd(t_cmd *cmd);
 /****FREE LISTS****/
 void	restore_lists(t_data **data,char *input);
 void free_all(t_data *data);
+void	free_token(t_token **token);
 
 #endif
