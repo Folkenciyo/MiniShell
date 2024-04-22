@@ -14,11 +14,14 @@ void	console_init(t_data *data)
 		input = readline(user);
 		if (!input)
 		{
+			free(input);
 			printf("exit\n");
 			data->exit = 1;
+			continue;
 		}
-		if (!token_maker(data, input))
-			break ;
+		if(token_maker(data, input))
+			continue;
+		
 		expand(data, input);
 		cmd_create(data);
 		// print_cmd(data->cmd_list);

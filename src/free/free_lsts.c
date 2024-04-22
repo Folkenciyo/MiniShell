@@ -43,17 +43,17 @@ void free_cmd(t_cmd **cmd)
 void free_envp(t_env_list **envp)
 {
 	t_env_list *lst;
-
-	if (*envp == NULL)
-		return ;
+	t_env_list *tmp;
 
 	lst = *envp;
+	tmp = NULL;
 	while (lst)
 	{
+		tmp = lst->next;
 		free(lst->key);
 		free(lst->value);
 		free(lst);
-		lst = lst->next;
+		lst = tmp;
 	}
 	*envp = NULL;
 }
