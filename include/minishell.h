@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/18 13:36:35 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:55:15 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int						is_space(char c);
 void					space_handler(t_data *data, char **str);
 void					word_handler(t_data *data, char **str);
 void					redir_handler(t_data *data, char **str);
-void					quotes_handler(t_data *data, char **str);
+int						quotes_handler(t_data *data, char **str);
 
 /****EXPANSION CORE*******/
 char					*envp_key(char *str);
@@ -133,6 +133,7 @@ void					print_token(t_data *data);
 void print_cmd(t_cmd *cmd);
 
 /****FREE LISTS****/
-void					free_token(t_token **token);
+void	restore_lists(t_data **data,char *input);
+void free_all(t_data *data);
 
 #endif

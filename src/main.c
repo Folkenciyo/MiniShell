@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:02:06 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/18 17:29:20 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:52:04 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	*data;
-	//int		status;
+	int		status;
 
 	(void)argv;
 	if (argc != 1)
@@ -25,5 +25,7 @@ int	main(int argc, char **argv, char **envp)
 		return (printf("\033[0;31mError:\t\033[0;21mMalloc failed\n\033[0;m"));
 	init_data(data, envp);
 	console_init(data);
-	exit(258);
+	status = data->status;
+	free_all(data);
+	exit(status);
 }

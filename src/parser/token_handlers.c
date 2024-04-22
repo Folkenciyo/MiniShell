@@ -59,7 +59,7 @@ void	redir_handler(t_data *data, char **str)
 	}
 }
 
-void	quotes_handler(t_data *data, char **str)
+int	quotes_handler(t_data *data, char **str)
 {
 	char	*tmp;
 	char	*start;
@@ -77,11 +77,9 @@ void	quotes_handler(t_data *data, char **str)
 			fill_token(data, TKN_DQUOTES, tmp);
 		else if (quote == '\'')
 			fill_token(data, TKN_SQUOTES, tmp);
+		free(tmp);
 	}
 	else
-	{
-		ft_putstr_fd("Quotes are not closed\n", 2);
-		free_token(&data->token_list);
-	}
-	free(tmp);
+		return(printf("Quotes are not closed\n"), 1);
+	return(0);
 }

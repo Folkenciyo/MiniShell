@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 18:15:41 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/03 21:13:28 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:25:56 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	fill_token(t_data *data, int key, char *value)
 int	token_maker(t_data *data, char *str)
 {
 	char	*tmp;
-
+	int		quotes;
+	
 	tmp = str;
+	quotes = 0;
 	while (*tmp)
 	{
 		if (!special_chars(*tmp))
@@ -35,12 +37,14 @@ int	token_maker(t_data *data, char *str)
 		else if (*tmp == '>' || *tmp == '<')
 			redir_handler(data, &tmp);
 		else if (*tmp == '\'' || *tmp == '\"')
-			quotes_handler(data, &tmp);
+			quotes = quotes_handler(data, &tmp);
 		else if (*tmp == '|')
 			fill_token(data, TKN_PIPE, "|");
 		tmp++;
 	}
-	return (1);
+	if (quotes)
+		return (free_token(&data->token_list), free(str), 1);
+	return (0);
 }
 
 void	print_token(t_data *data)

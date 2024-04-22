@@ -20,8 +20,6 @@ int here_doc(t_cmd *cmd, char *here_doc)
 			
 		write(fd[1], input, ft_strlen(input));
 		write(fd[1], "\n", 1);
-		
-
 		free(input);
 	}
 	free(input);
