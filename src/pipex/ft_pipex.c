@@ -12,45 +12,83 @@
 
 #include "minishell.h";
 
-int	ft_exec_cmd(t_data *data, t_cmd *list, int cmd_number)
+int	ft_child_process(t_data *data, t_cmd *node)
 {
-	int	status;
+    og_stdin = dup(STDIN);
+    og_stdout = dup(STDOUT);
 
-	status = 0;
-	if (!list->comand[0])
-		return (COMMAND_NULL);
-	else if (ft_cmd_is_built_in(data, list->comand[0]) == TRUE
-		&& cmd_number == 0)
-	{
-		status = ft_built_in(data, list->comand);
-		ft_close_fd(list);
-		return (status);
-	}
-/* 	else
-	{
-		g_batch_flag = 1;
-		return (ft_fork(data, list, cmd_number));
-	}*/
-	return (status);
+    ft_redir_fd_std(node->fd_in, STDIN, node->fd_in);
+    ft_redir_fd_std(node->fd_out, STDOUT, node->fd_out);
+    paths = get_paths(data->envp);
+    tmp = abs_bin_path(node->command[0], paths);
+    if (!tmp)
+        exit(COMMAND_NOT_FOUND);
+	if (execve(tmp, node->command, data->envp) < 0)
+    {
+        free(tmp);
+        ft_free_matrix(paths);
+        ft_redir_fds(og_stdin, og_stdout);
+        exit(EXIT_ERROR);
+    }
+    return (status);
+}
+
+void	ft_close_fds(t_cmd *node)
+{
+    if (node->fd_in != NO_FD && node->fd_in != STDIN)
+        close(node->fd_in);
+    if (node->fd_out != NO_FD && node->fd_out != STDOUT)
+        close(node->fd_out);
+}
+
+int	ft_fork_funct(t_data *data, t_cmd *node, int cmd_number)
+{
+    id = fork();
+
+    if (id == 0)
+    {
+        if (ft_is_builtin(data, node->command[0]) == TRUE && cmd_number != 0)
+        {
+            status = ft_builtin(data, node);
+            exit (status);
+        }
+        else
+            ft_child_process(data, node);
+    }
+	else
+    {
+        waitpid(id, &status, 0);
+        ft_close_fds(node);
+    }
+
+    return (WEXITSTATUS(status));
+}
+
+int	ft_exec_cmd(t_data *data, t_cmd *node, int cmd_number)
+{
+    if (ft_is_builtin(data, node->command[0]) == TRUE && cmd_number == 0)
+    {
+        status = ft_builtin(data, node);
+        ft_close_fds(node);
+        return (status);
+    }
+    else
+    {
+        g_batch_flag = 1;
+        return (ft_fork_funct(data, node, cmd_number));
+    }
 }
 
 int	ft_pipex(t_data *data)
 {
-	t_cmd	*list;
-	int		status;
-	int		cmd_number;
+    while (list)
+    {
+        status = ft_exec_cmd(data, list, cmd_number);
+        g_batch_flag = 0;
+        data->status = status;
+        list = list->next;
+        cmd_number++;
+    }
 
-	list = data->cmd_lst;
-	status = 0;
-	cmd_number = 0;
-	if (ft_lst_size(list) > 1)
-		cmd_number = 1;
-	while (list)
-	{
-		status = ft_exec_cmd(data, list, cmd_number); 
-		g_batch_flag = 0;
-		data->status = status;
-		list = list->next;
-		cmd_number++;
-	}
-	return (EXIT_SUCCESS);
+    return (EXIT_SUCCESS);
+}

@@ -443,21 +443,131 @@ int						unset(t_data *data, char **cmd);
 void 					ft_delete_variable(t_data *data, char *tuple);
 
 /******** PIPEX *********/
-// pipex.c
+
+///////////////////////// pipex.c /////////////////////////
+/**
+ * @brief Implementa la función principal de pipex
+ * 
+ * @param data
+ * @return int
+*/
 int						ft_pipex(t_data *data);
+/**
+ * @brief Ejecuta un comando en un proceso hijo
+ * 
+ * @param data
+ * @param node
+*/
 int						ft_exec_cmd(t_data *data, t_cmd *list, int cmd_number);
-//pipex_fd_builts_utils.c
-int						ft_built_in(t_data *data, t_cmd *node);
-void					ft_redir_fd_std(int fd, int std, int fd2);
-int						ft_list_len(t_cmd *list);
-int						ft_exec_builtin(t_data *data, char **cmd);
-int						ft_cmd_is_built_in(t_data *data, char *str);
-//pipex_utils.c
-char					*abs_bin_path(char *cmd, char **envp);
-char					**get_paths(char *envp[]);
-int						ft_is_builtin(t_data *data, char *str);
-char					*ft_valid_cmd(char *cmd);
-int						ft_print_error(char *cmd);
+/**
+ * @brief Crea un proceso hijo y ejecuta un comando
+ * 
+ * @param data
+ * @param node
+ * @param cmd_number
+*/
+int 					ft_fork_funct(t_data *data, t_cmd *node, int cmd_number);
+/**
+ * @brief Cierra los descriptores de archivo de un nodo
+ * 
+ * @param node
+*/
+void					ft_close_fds(t_cmd *node);
+/**
+ * @brief Ejecuta un comando en un proceso hijo
+ * 
+ * @param data
+ * @param node
+*/
+int						ft_child_process(t_data *data, t_cmd *node);
+
+/////////////////////// pipex_fd_builts_utils.c ///////////////////////
+/**
+ * @brief Calcula la longitud de una lista.
+ * 
+ * @param list
+ * @return
+ */
+int 					ft_list_len(t_cmd *list);
+
+/**
+ * @brief Redirige un descriptor de archivo a la entrada o salida estándar.
+ * 
+ * @param fd El descriptor de archivo a redirigir.
+ * @param std El descriptor de archivo estándar al que se redirige (STDIN o STDOUT).
+ * @param fd2 El descriptor de archivo a duplicar.
+ */
+void 					ft_redir_fd_std(int fd, int std, int fd2);
+
+/**
+ * @brief Ejecuta un comando integrado.
+ * 
+ * @param data La estructura de datos que contiene el estado del shell.
+ * @param cmd El comando a ejecutar.
+ * @return int El estado de la ejecución del comando.
+ */
+int 					ft_exec_builtin(t_data *data, char **cmd);
+
+/**
+ * @brief Verifica si un comando es un comando integrado y lo ejecuta.
+ * 
+ * @param data La estructura de datos que contiene el estado del shell.
+ * @param node El nodo de comando a verificar y ejecutar.
+ * @return int El estado de la ejecución del comando.
+ */
+int 					ft_built_in(t_data *data, t_cmd *node);
+
+/**
+ * @brief Verifica si una cadena es un comando integrado.
+ * 
+ * @param data La estructura de datos que contiene el estado del shell.
+ * @param str La cadena a verificar.
+ * @return int 1 si la cadena es un comando integrado, 0 en caso contrario.
+ */
+int 					ft_cmd_is_built_in(t_data *data, char *str);
+
+///////////////////// pipex_utils.c ///////////////////////
+/**
+ * @brief Obtiene la ruta absoluta del binario del comando.
+ * 
+ * @param cmd El comando para el cual obtener la ruta del binario.
+ * @param envp El array de variables de entorno.
+ * @return char* La ruta absoluta del binario del comando.
+ */
+char 					*abs_bin_path(char *cmd, char **envp);
+
+/**
+ * @brief Obtiene las rutas de los directorios en la variable de entorno PATH.
+ * 
+ * @param envp El array de variables de entorno.
+ * @return char** Un array de cadenas con las rutas de los directorios en PATH.
+ */
+char 					**get_paths(char *envp[]);
+
+/**
+ * @brief Verifica si una cadena es un comando integrado.
+ * 
+ * @param data La estructura de datos que contiene el estado del shell.
+ * @param str La cadena a verificar.
+ * @return int 1 si la cadena es un comando integrado, 0 en caso contrario.
+ */
+int 					ft_is_builtin(t_data *data, char *str);
+
+/**
+ * @brief Verifica si un comando es válido.
+ * 
+ * @param cmd El comando a verificar.
+ * @return char* El comando si es válido, NULL en caso contrario.
+ */
+char 					*ft_valid_cmd(char *cmd);
+
+/**
+ * @brief Imprime un mensaje de error relacionado con un comando.
+ * 
+ * @param cmd El comando que causó el error.
+ * @return int Un código de error.
+ */
+int 					ft_print_error(char *cmd);
 
 
 
@@ -471,8 +581,8 @@ void					signals_call(void);
 
 //*******TOKEN FILL*********/
 //token_init.c
-void    fill_token(t_data *data, int key, char *value);
-int     token_maker(t_data *data,char *str);
+void    				fill_token(t_data *data, int key, char *value);
+int     				token_maker(t_data *data,char *str);
 
 /*UTILS FOR THE PARSER*/
 
@@ -482,10 +592,10 @@ int						is_space(char c);
 
 /******CHARACTER HANDLERS(TOKENIZER)*****/
 //handlers.c
-void	space_handler(t_data *data, char **str);
-void	word_handler(t_data *data, char **str);
-void	redir_handler(t_data *data,char **str);
-void	quotes_handler(t_data *data, char **str);
+void					space_handler(t_data *data, char **str);
+void					word_handler(t_data *data, char **str);
+void					redir_handler(t_data *data,char **str);
+void					quotes_handler(t_data *data, char **str);
 
 /********FUNCION TEMPORAL print_token*******/
 void					print_token(t_data *data);

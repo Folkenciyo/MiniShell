@@ -69,4 +69,3 @@ int	exit1(t_data *data, char **cmd)
 		return (WRONG_ARG);
 	}
 }
-
