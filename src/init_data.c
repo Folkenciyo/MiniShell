@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:01:53 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/03 21:11:48 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:20:33 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ void	init_env(t_data *data, char **envp)
 
 int	build_in_data(t_data *data)
 {
-	data->built_in_cmd[0] = "echo";
-	data->built_in_cmd[1] = "cd";
-	data->built_in_cmd[2] = "pwd";
-	data->built_in_cmd[3] = "export";
-	data->built_in_cmd[4] = "unset";
-	data->built_in_cmd[5] = "env";
-	data->built_in_cmd[6] = "exit";
+	data->built_in_cmd[0] = ft_strdup("echo");
+	data->built_in_cmd[1] = ft_strdup("cd");
+	data->built_in_cmd[2] = ft_strdup("pwd");
+	data->built_in_cmd[3] = ft_strdup("export");
+	data->built_in_cmd[4] = ft_strdup("unset");
+	data->built_in_cmd[5] = ft_strdup("env");
+	data->built_in_cmd[6] = ft_strdup("exit");
 	data->built_in_cmd[7] = NULL;
 	return (0);
 }

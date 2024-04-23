@@ -4,16 +4,18 @@
 void	free_token(t_token **token)
 {
 	t_token *lst;
+	t_token *tmp;
 
 	if (*token == NULL)
 		return ;
-
+	tmp = NULL;
 	lst = *token;
 	while (lst)
 	{
+		tmp = lst->next;
 		free(lst->content);
 		free(lst);
-		lst = lst->next;
+		lst = tmp;
 	}
 	*token = NULL;
 }
@@ -21,21 +23,22 @@ void	free_token(t_token **token)
 void free_cmd(t_cmd **cmd)
 {
 	t_cmd *lst;
+	t_cmd *tmp;
 
 	if (*cmd == NULL)
 		return ;
-
+	tmp = NULL;
 	lst = *cmd;
 	while (lst)
 	{
-
+		tmp = lst->next;
 		free(lst->comand);
 		if(lst->fd_in > 2)
 			close(lst->fd_in);
 		if(lst->fd_out > 2)
 			close(lst->fd_out);
 		free(lst);
-		lst = lst->next;
+		lst = tmp;
 	}
 	*cmd = NULL;
 }
@@ -65,6 +68,7 @@ void free_all(t_data *data)
 	i = 0;
 	while (data->built_in_cmd[i])
 		free(data->built_in_cmd[i++]);
+	// free(data->built_in_cmd);
 	i = 0;
 	while (data->envp[i])
 		free(data->envp[i++]);

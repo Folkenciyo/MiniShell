@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 18:15:41 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/22 18:45:05 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:35:13 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	fill_token(t_data *data, int key, char *value)
 	t_token	*token;
 
 	token = ft_tokennew(key, value);
+	if(!token)
+		return ;
 	if (!data->token_list)
 		ft_tokenadd_front(&data->token_list, token);
 	else
