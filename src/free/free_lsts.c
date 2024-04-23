@@ -3,8 +3,8 @@
 
 void	free_token(t_token **token)
 {
-	t_token *lst;
-	t_token *tmp;
+	t_token	*lst;
+	t_token	*tmp;
 
 	if (*token == NULL)
 		return ;
@@ -20,10 +20,10 @@ void	free_token(t_token **token)
 	*token = NULL;
 }
 
-void free_cmd(t_cmd **cmd)
+void	free_cmd(t_cmd **cmd)
 {
-	t_cmd *lst;
-	t_cmd *tmp;
+	t_cmd	*lst;
+	t_cmd	*tmp;
 
 	if (*cmd == NULL)
 		return ;
@@ -33,9 +33,9 @@ void free_cmd(t_cmd **cmd)
 	{
 		tmp = lst->next;
 		free(lst->comand);
-		if(lst->fd_in > 2)
+		if (lst->fd_in > 2)
 			close(lst->fd_in);
-		if(lst->fd_out > 2)
+		if (lst->fd_out > 2)
 			close(lst->fd_out);
 		free(lst);
 		lst = tmp;
@@ -43,10 +43,10 @@ void free_cmd(t_cmd **cmd)
 	*cmd = NULL;
 }
 
-void free_envp(t_env_list **envp)
+void	free_envp(t_env_list **envp)
 {
-	t_env_list *lst;
-	t_env_list *tmp;
+	t_env_list	*lst;
+	t_env_list	*tmp;
 
 	lst = *envp;
 	tmp = NULL;
@@ -61,14 +61,13 @@ void free_envp(t_env_list **envp)
 	*envp = NULL;
 }
 
-void free_all(t_data *data)
+void	free_all(t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (data->built_in_cmd[i])
 		free(data->built_in_cmd[i++]);
-	// free(data->built_in_cmd);
 	i = 0;
 	while (data->envp[i])
 		free(data->envp[i++]);
@@ -81,7 +80,7 @@ void free_all(t_data *data)
 	free(data);
 }
 
-void	restore_lists(t_data **data,char *input)
+void	restore_lists(t_data **data, char *input)
 {
 	free_token(&(*data)->token_list);
 	free_cmd(&(*data)->cmd_list);

@@ -1,22 +1,19 @@
 #include "minishell.h"
 
-//Basicamente una funcion para gestionar el error de unexpected token
 int	unexpected_token(t_token *token)
 {
 	if (token && token->key == TKN_PIPE)
-		return(269); //para que no salga por ninguna salida de error
+		return (258);
 	while (token)
 	{
-		if ((token->key == TKN_PIPE 
-			|| token->key == TKN_REDIR_APPEND
-			|| token->key == TKN_REDIR_IN
-			|| token->key == TKN_REDIR_OUT
-			|| token->key == TKN_REDIR_SOURCE
-			)&& (!token->next || (token->next && token->next->key != TKN_WORD)))
-				return(269);
+		if ((token->key == TKN_PIPE || token->key == TKN_REDIR_APPEND
+				|| token->key == TKN_REDIR_IN || token->key == TKN_REDIR_OUT
+				|| token->key == TKN_REDIR_SOURCE) && (!token->next
+				|| (token->next && token->next->key != TKN_WORD)))
+			return (258);
 		token = token->next;
 	}
-	return(0);
+	return (0);
 }
 
 char	**add_to_comand(char **arr, char *new_str)
@@ -47,15 +44,15 @@ int	redir_out_last(t_token *token)
 {
 	while (token)
 	{
-		if ((token->key == TKN_REDIR_OUT|| token->key == TKN_REDIR_APPEND)
-				&& (token->next && !token->next->next))
-			return(1);
+		if ((token->key == TKN_REDIR_OUT || token->key == TKN_REDIR_APPEND)
+			&& (token->next && !token->next->next))
+			return (1);
 		token = token->next;
 	}
-	return(0);
+	return (0);
 }
 
-void change_cmd_out(t_cmd *cmd)
+void	change_cmd_out(t_cmd *cmd)
 {
 	while (cmd)
 	{
@@ -69,4 +66,14 @@ void change_cmd_out(t_cmd *cmd)
 		}
 		cmd = cmd->next;
 	}
+}
+
+int	status_check(int status)
+{
+	if (status == 258)
+		return (printf("bash: syntax error near unexpected token\n"), status);
+	else if (status == 1)
+		return (printf("bash: syntax error no such a file or directory\n"),
+			status);
+	return (0);
 }

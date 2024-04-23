@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:45:29 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/22 17:36:45 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:33:59 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,30 +111,31 @@ int						valid_key(char c);
 void					expand(t_data *data, char *input);
 
 /****CMD FILL CORE*******/
-t_cmd   *new_cmd();
-void add_cmd_back(t_cmd **cmd,t_cmd *new_cmd);
-int	unexpected_token(t_token *token);
-char	**add_to_comand(char **arr, char *new_str);
+t_cmd					*new_cmd(void);
+void					add_cmd_back(t_cmd **cmd, t_cmd *new_cmd);
+int						unexpected_token(t_token *token);
+char					**add_to_comand(char **arr, char *new_str);
 
 /****REDIR_HANDLERS****/
-int		handle_redirections(t_cmd *cmd,int *fd_in, t_token **token);
-void	cmd_create(t_data *data);
-int	redir_out_last(t_token *token);
+int						handle_redirections(t_cmd *cmd, int *fd_in,
+							t_token **token);
+void					cmd_create(t_data *data);
+int						redir_out_last(t_token *token);
 
 /**CMD UTILS**/
-void change_cmd_out(t_cmd *cmd);
+void					change_cmd_out(t_cmd *cmd);
+int						status_check(int status);
 
 /****HERDE DOC HANDLERS***/
-int here_doc_status(t_cmd *cmd, t_token *token);
-
+int						here_doc_status(t_cmd *cmd, t_token *token);
 
 /********FUNCION TEMPORAL print_token*******/
 void					print_token(t_data *data);
-void print_cmd(t_cmd *cmd);
+void					print_cmd(t_cmd *cmd);
 
 /****FREE LISTS****/
-void	restore_lists(t_data **data,char *input);
-void free_all(t_data *data);
-void	free_token(t_token **token);
+void					restore_lists(t_data **data, char *input);
+void					free_all(t_data *data);
+void					free_token(t_token **token);
 
 #endif
