@@ -31,7 +31,6 @@ void	ft_print_export(t_data *data)
             i++;
         }
     }
-    // Libera la memoria utilizada por la lista ordenada.
     ft_free_matrix(ordered_list);
 }
 
