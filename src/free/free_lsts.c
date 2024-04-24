@@ -63,7 +63,7 @@ void	free_envp(t_env_list **envp)
 
 void	free_all(t_data *data)
 {
-	int	i;
+	int	i; 
 
 	i = 0;
 	while (data->built_in_cmd[i])
