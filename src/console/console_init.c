@@ -24,8 +24,7 @@ void	console_init(t_data *data)
 		
 		expand(data, input);
 		cmd_create(data);
-/* 		print_cmd(data->cmd_list);
-		print_token(data); */
+		ft_pipex(data);
 		if (*input != '\0')
 			add_history(input);
 		restore_lists(&data, input);

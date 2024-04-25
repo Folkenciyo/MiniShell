@@ -6,14 +6,11 @@
 /*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:02:06 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/25 15:54:59 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:03:04 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-/// DATA INIT
-
 /// LAUNCHER: ......pipex.........
 
 int	main(int argc, char **argv, char **envp)
