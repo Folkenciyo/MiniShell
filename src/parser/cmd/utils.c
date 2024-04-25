@@ -16,7 +16,7 @@ int	unexpected_token(t_token *token)
 	return (0);
 }
 
-char	**add_to_comand(char **arr, char *new_str)
+char	**add_to_command(char **arr, char *new_str)
 {
 	size_t	i;
 	size_t	j;

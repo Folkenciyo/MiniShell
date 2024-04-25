@@ -3,7 +3,7 @@
 static void	handler_c(int signal)
 {
 	(void)signal;
-	// if (g_batch_flag == 0)
+	// if (data->g_batch_flag == 0)
 	// {
 		// rl_on_new_line();
 		// rl_redisplay();
@@ -13,7 +13,7 @@ static void	handler_c(int signal)
 		// rl_redisplay();
 		// rl_replace_line("", 0);
 	// }
-	// else if (g_batch_flag == 1)
+	// else if (data->g_batch_flag == 1)
 	// {
 		write(1, "\n", 1);
 		// rl_replace_line("", 1);

@@ -1,10 +1,10 @@
 #include "minishell.h"
 
 //Crea el nodo cmd para despues este nodo pasarselo a otra funcion que
-//crea el string del comando en si
+//crea el string del commando en si
 void	new_cmd_if(t_cmd **cmd_lst, t_cmd **new, int key)
 {
-	if (!*new || (new && (*new)->comand[0] && !(key == TKN_REDIR_APPEND
+	if (!*new || (new && (*new)->command[0] && !(key == TKN_REDIR_APPEND
 				|| key == TKN_REDIR_OUT || key == TKN_PIPE)))
 	{
 		*new = new_cmd();
@@ -16,7 +16,7 @@ void	add_word_cmd(t_cmd **new, t_token **token, int *status, int *fd_in)
 {
 	while (*token && (*token)->key == TKN_WORD)
 	{
-		(*new)->comand = add_to_comand((*new)->comand, (*token)->content);
+		(*new)->command = add_to_command((*new)->command, (*token)->content);
 		if (!(*token)->next && handle_redirections(*new, fd_in, token))
 		{
 			*status = 1;

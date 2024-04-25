@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h";
+#include "minishell.h"
 
 int	ft_child_process(t_data *data, t_cmd *node)
 {
@@ -32,12 +32,14 @@ int	ft_child_process(t_data *data, t_cmd *node)
     paths = get_paths(data->envp);
     tmp = abs_bin_path(node->command[0], paths);
     if (!tmp)
+    {
         exit(COMMAND_NULL);
+    }
 	if (execve(tmp, node->command, data->envp) < 0)
     {
         free(tmp);
         ft_free_matrix(paths);
-        ft_redir_fds(og_stdin, og_stdout);
+        ft_redir_fd_std(og_stdin, status, og_stdout);
         exit(EXIT_FAILURE);
     }
     return (status);
@@ -56,13 +58,13 @@ int	ft_fork_funct(t_data *data, t_cmd *node, int cmd_number)
 	int		status;
 	pid_t	id;
 
-	status = NO_STAT;
+	status = NO_FD;
 	id = fork();
     if (id == 0)
     {
         if (ft_is_builtin(data, node->command[0]) == TRUE && cmd_number != 0)
         {
-            status = ft_builtin(data, node);
+            status = ft_built_in(data, node);
             exit (status);
         }
         else
@@ -84,13 +86,13 @@ int	ft_exec_cmd(t_data *data, t_cmd *node, int cmd_number)
 	status = 0;
     if (ft_is_builtin(data, node->command[0]) == TRUE && cmd_number == 0)
     {
-        status = ft_builtin(data, node);
+        status = ft_built_in(data, node);
         ft_close_fds(node);
         return (status);
     }
     else
     {
-        g_batch_flag = 1;
+        data->g_batch_flag = 1;
         return (ft_fork_funct(data, node, cmd_number));
     }
 }
@@ -101,15 +103,15 @@ int	ft_pipex(t_data *data)
 	int		status;
 	int		cmd_number;
 
-	list = info->cmd_lst;
+	list = data->cmd_list;
 	status = 0;
 	cmd_number = 0;
-	if (ft_lst_size(list) > 1)
+	if (ft_lstsize_cmd(list) > 1)
 		cmd_number = 1;
     while (list)
     {
         status = ft_exec_cmd(data, list, cmd_number);
-        g_batch_flag = 0;
+        data->g_batch_flag = 0;
         data->status = status;
         list = list->next;
         cmd_number++;

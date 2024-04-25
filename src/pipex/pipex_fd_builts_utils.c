@@ -17,7 +17,7 @@ int	ft_exec_builtin(t_data *data, char **cmd)
 	if (ft_strncmp("cd", cmd[0], 2) == 0 && cmd[0][2] == '\0')
 		return (cd(data, cmd));
 	else if (ft_strncmp("echo", cmd[0], 4) == 0 && cmd[0][4] == '\0')
-		return (echo(cmd));
+		return (ft_echo(cmd));
 	else if (ft_strncmp("env", cmd[0], 3) == 0 && cmd[0][3] == '\0')
 		return (env(data, cmd));
 	else if (ft_strncmp("exit", cmd[0], 4) == 0 && cmd[0][4] == '\0')

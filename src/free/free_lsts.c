@@ -32,7 +32,7 @@ void	free_cmd(t_cmd **cmd)
 	while (lst)
 	{
 		tmp = lst->next;
-		free(lst->comand);
+		free(lst->command);
 		if (lst->fd_in > 2)
 			close(lst->fd_in);
 		if (lst->fd_out > 2)

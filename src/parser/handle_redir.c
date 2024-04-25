@@ -22,7 +22,7 @@ int	redir_in(t_token *token, t_cmd *cmd)
 	if (cmd->fd_in == -1)
 		return (1);
 	token = token->next;
-	if (token->next && token->next->key == TKN_PIPE && !cmd->comand[0]
+	if (token->next && token->next->key == TKN_PIPE && !cmd->command[0]
 		&& cmd->fd_in > 2)
 	{
 		close(cmd->fd_in);

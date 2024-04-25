@@ -25,10 +25,10 @@ int	ft_is_builtin(t_data *data, char *str)
 	int	cntr;
 
 	cntr = 0;
-	while (data->reserved_words[cntr])
+	while (data->built_in_cmd[cntr])
 	{
-		if (ft_strncmp(str, data->reserved_words[cntr],
-				ft_strlen(data->reserved_words[cntr]) + 1) == 0)
+		if (ft_strncmp(str, data->built_in_cmd[cntr],
+				ft_strlen(data->built_in_cmd[cntr]) + 1) == 0)
 			return (TRUE);
 		cntr++;
 	}

@@ -37,3 +37,18 @@ void	refill_envp_lst(t_data *data, char **new_envp)
 	//init_envp_lst(data, new_envp); //la necesito de las signals
 
 }
+
+int	ft_lstsize_cmd(t_cmd *lst)
+{
+	int	i;
+
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst != 0)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}

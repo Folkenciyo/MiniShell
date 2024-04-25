@@ -32,12 +32,11 @@
 /**
  * @brief El "batch mode" (modo de lotes) es un término que se refiere a
  * un modo de operación en el que un programa ejecuta una secuencia de
- * comandos o tareas automáticamente, sin intervención directa del usuario.
- * En este modo, el programa lee una lista predefinida de comandos o
+ * commandos o tareas automáticamente, sin intervención directa del usuario.
+ * En este modo, el programa lee una lista predefinida de commandos o
  * instrucciones desde un archivo o desde la entrada estándar,
  * ejecuta estas instrucciones en secuencia y luego finaliza.
  */
-int						g_batch_flag;
 
 typedef struct s_env_list
 {
@@ -48,7 +47,7 @@ typedef struct s_env_list
 
 typedef struct s_cmd
 {
-	char				**comand;
+	char				**command;
 	char				**choosen_path;
 	int					fd_in;
 	int					fd_out;
@@ -61,6 +60,7 @@ typedef struct s_data
 	int					status;
 	int					exit;
 	char				**envp;
+	int 				g_batch_flag;
 	t_env_list			*envp_list;
 	t_token				*token_list;
 	t_cmd				*cmd_list;
@@ -80,7 +80,7 @@ void					envp_list_add_front(t_env_list *lst, t_env_list *new);
 
 ///////////////////////// cd.c /////////////////////////
 /**
- * @brief Esta función verifica si el comando es "cd" y, si es así, 
+ * @brief Esta función verifica si el commando es "cd" y, si es así, 
  * llama a la función ft_cd	
  * 
  * @param data 
@@ -89,7 +89,7 @@ void					envp_list_add_front(t_env_list *lst, t_env_list *new);
  */
 int						cd(t_data *data, char **cmd);
 /**
- * @brief Implementa el comando cd:
+ * @brief Implementa el commando cd:
  * Si no hay argumentos después de "cd", cambia al directorio home.
  * Si el primer argumento es "-", cambia al último directorio visitado.
  * Si el primer argumento es "~", cambia al directorio home.
@@ -158,7 +158,7 @@ int						ft_cd_lastdir(t_data *data);
 
 ///////////////////////// echo.c /////////////////////////
 /**
- * @brief Implementa el comando echo:
+ * @brief Implementa el commando echo:
  * Si no hay argumentos después de "echo", imprime una nueva línea.
  * Si hay argumentos después de "echo", imprime los argumentos.
  * Si hay argumentos después de "echo" y el primer argumento es "-n",
@@ -172,14 +172,14 @@ int 				   ft_echo(char **cmd);
 
 //////////////////////// pws.c /////////////////////////
 /**
- * @brief Implementa el comando pwd:
+ * @brief Implementa el commando pwd:
  * Imprime el directorio de trabajo actual
  * 
  * @return int 
  */
 int 					ft_pwd(void);
 /**
- * @brief Verifica si el comando es "pwd" y, si es así, llama a la función ft_pwd
+ * @brief Verifica si el commando es "pwd" y, si es así, llama a la función ft_pwd
  * 
  * @param cmd 
  * @return int 
@@ -247,7 +247,7 @@ int						ft_env_exists(char *tuple, char **envp);
  */
 int 					ft_print_error(char *cmd);
 /**
- * @brief Implementa el comando export:
+ * @brief Implementa el commando export:
  * Si no hay argumentos después de "export", imprime todas las variables de entorno.
  * Si hay argumentos después de "export", añade las variables de entorno.
  * 
@@ -386,6 +386,13 @@ void					ft_t_lstclear(t_env_list **envp_lst);
  * @param new_envp 
  */
 void					refill_envp_lst(t_data *data, char **new_envp);
+/**
+ * @brief Calcula el tamaño de una lista de variables de entorno
+ * 
+ * @param lst 
+ * @return int 
+ */
+int						ft_lstsize_cmd(t_cmd *lst);
 
 /////////////////////// env.c ///////////////////////////
 /**
@@ -399,7 +406,7 @@ int						env(t_data *data, char **cmd);
 
 /////////////////////// exit.c ///////////////////////////
 /**
- * @brief Implementa el comando exit:
+ * @brief Implementa el commando exit:
  * Establece el estado de salida y cambia la flag de salida a 1
  * 
  * @param data
@@ -408,7 +415,7 @@ int						env(t_data *data, char **cmd);
  */
 int						ft_exit(t_data *data, int option);
 /**
- * @brief Verifica si el comando es "exit" y, si es así, llama a
+ * @brief Verifica si el commando es "exit" y, si es así, llama a
  *  la función ft_exit
  * 
  * @param data 
@@ -427,7 +434,7 @@ int						exit1(t_data *data, char **cmd);
  */
 int						ft_unset(t_data *data, char *tuple);
 /**
- * @brief Verifica si el comando es "unset" y, si es así, llama a la función ft_unset
+ * @brief Verifica si el commando es "unset" y, si es así, llama a la función ft_unset
  * 
  * @param data 
  * @param cmd 
@@ -453,14 +460,14 @@ void 					ft_delete_variable(t_data *data, char *tuple);
 */
 int						ft_pipex(t_data *data);
 /**
- * @brief Ejecuta un comando en un proceso hijo
+ * @brief Ejecuta un commando en un proceso hijo
  * 
  * @param data
  * @param node
 */
 int						ft_exec_cmd(t_data *data, t_cmd *list, int cmd_number);
 /**
- * @brief Crea un proceso hijo y ejecuta un comando
+ * @brief Crea un proceso hijo y ejecuta un commando
  * 
  * @param data
  * @param node
@@ -474,7 +481,7 @@ int 					ft_fork_funct(t_data *data, t_cmd *node, int cmd_number);
 */
 void					ft_close_fds(t_cmd *node);
 /**
- * @brief Ejecuta un comando en un proceso hijo
+ * @brief Ejecuta un commando en un proceso hijo
  * 
  * @param data
  * @param node
@@ -500,20 +507,20 @@ int 					ft_list_len(t_cmd *list);
 void 					ft_redir_fd_std(int fd, int std, int fd2);
 
 /**
- * @brief Ejecuta un comando integrado.
+ * @brief Ejecuta un commando integrado.
  * 
  * @param data La estructura de datos que contiene el estado del shell.
- * @param cmd El comando a ejecutar.
- * @return int El estado de la ejecución del comando.
+ * @param cmd El commando a ejecutar.
+ * @return int El estado de la ejecución del commando.
  */
 int 					ft_exec_builtin(t_data *data, char **cmd);
 
 /**
- * @brief Verifica si un comando es un comando integrado y lo ejecuta.
+ * @brief Verifica si un commando es un commando integrado y lo ejecuta.
  * 
  * @param data La estructura de datos que contiene el estado del shell.
- * @param node El nodo de comando a verificar y ejecutar.
- * @return int El estado de la ejecución del comando.
+ * @param node El nodo de commando a verificar y ejecutar.
+ * @return int El estado de la ejecución del commando.
  */
 int 					ft_built_in(t_data *data, t_cmd *node);
 
@@ -607,7 +614,7 @@ void					expand(t_data *data, char *input);
 t_cmd					*new_cmd(void);
 void					add_cmd_back(t_cmd **cmd, t_cmd *new_cmd);
 int						unexpected_token(t_token *token);
-char					**add_to_comand(char **arr, char *new_str);
+char					**add_to_command(char **arr, char *new_str);
 
 /****REDIR_HANDLERS****/
 int						handle_redirections(t_cmd *cmd, int *fd_in,

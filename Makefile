@@ -97,17 +97,6 @@ OBJS 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 OBJF		=	.cache_exists
 
-#########################################################
-##PRUEBA##
-pipex:
-			@make -C $(LIBFT)
-			@cp libft/libft.a .
-			@mv libft.a PIPEX
-			@$(CC) $(SRC_DIR)$(PIPEX_DIR)ft_pipex.c -o $(NAME) $(LIBFT)/libft.a $(HEADER) 
-			@echo "$(GREEN)MiniShell compiled!$(DEF_COLOR)"
-
-#########################################################
-
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
@@ -166,15 +155,5 @@ re:			fclean all
 			@echo "$(BLUE):::     ::   $(YELLOW) ::  $(GREEN) ::   ::  $(PURPLE) ::  $(CYAN):::: ::   $(RED)::   :::   :: ::::   :: ::::   :: ::::$(DEF_COLOR)"
 			@echo "$(BLUE) :      :    $(YELLOW):    $(GREEN)::    :   $(PURPLE):    $(CYAN):: : :    $(RED) :   : :  : :: ::   : :: : :  : :: : :$(DEF_COLOR)"
 			@echo ""	
-
-git:
-			@git add .
-			@git commit -m "Makefile auto commit"
-			@git push
-
-push_to_juan:
-			@git add .
-			@git commit -m "Makefile auto commit"
-			
 
 .PHONY:		all clean fclean re git

@@ -7,8 +7,8 @@ t_cmd	*new_cmd(void)
 	node = malloc(sizeof(t_cmd));
 	if (!node)
 		return (NULL);
-	node->comand = ft_calloc(1, sizeof(char *));
-	node->comand[0] = NULL;
+	node->command = ft_calloc(1, sizeof(char *));
+	node->command[0] = NULL;
 	node->fd_in = 0;
 	node->fd_out = 1;
 	node->next = NULL;
@@ -40,9 +40,9 @@ void	print_cmd(t_cmd *cmd)
 	while (cmd)
 	{
 		i = 0;
-		while (cmd->comand[i])
+		while (cmd->command[i])
 		{
-			printf("comand[%d]: %s\n", i, cmd->comand[i]);
+			printf("command[%d]: %s\n", i, cmd->command[i]);
 			i++;
 		}
 		printf("fd_in: %d\n", cmd->fd_in);
