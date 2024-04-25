@@ -569,8 +569,6 @@ char 					*ft_valid_cmd(char *cmd);
  */
 int 					ft_print_error(char *cmd);
 
-
-
 //****** CONSOLE INIT*****/
 //console_init.c
 void					console_init(t_data *data);

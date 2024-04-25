@@ -12,6 +12,10 @@
 
 #include "../include/minishell.h"
 
+/// DATA INIT
+
+/// LAUNCHER: ......pipex.........
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	*data;

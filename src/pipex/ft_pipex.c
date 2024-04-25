@@ -22,13 +22,13 @@ int	ft_child_process(t_data *data, t_cmd *node)
     paths = get_paths(data->envp);
     tmp = abs_bin_path(node->command[0], paths);
     if (!tmp)
-        exit(COMMAND_NOT_FOUND);
+        exit(COMMAND_NULL);
 	if (execve(tmp, node->command, data->envp) < 0)
     {
         free(tmp);
         ft_free_matrix(paths);
         ft_redir_fds(og_stdin, og_stdout);
-        exit(EXIT_ERROR);
+        exit(EXIT_FAILURE);
     }
     return (status);
 }
