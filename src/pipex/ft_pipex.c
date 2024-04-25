@@ -14,9 +14,19 @@
 
 int	ft_child_process(t_data *data, t_cmd *node)
 {
+    int		og_stdin;
+	int		og_stdout;
+	char	*tmp;
+	int		status;
+	char	**paths;
+
+	tmp = NULL;
+	paths = NULL;
+	og_stdin = dup(STDIN);
+	og_stdout = dup(STDOUT);
+	status = 0;
     og_stdin = dup(STDIN);
     og_stdout = dup(STDOUT);
-
     ft_redir_fd_std(node->fd_in, STDIN, node->fd_in);
     ft_redir_fd_std(node->fd_out, STDOUT, node->fd_out);
     paths = get_paths(data->envp);
@@ -43,8 +53,11 @@ void	ft_close_fds(t_cmd *node)
 
 int	ft_fork_funct(t_data *data, t_cmd *node, int cmd_number)
 {
-    id = fork();
+	int		status;
+	pid_t	id;
 
+	status = NO_STAT;
+	id = fork();
     if (id == 0)
     {
         if (ft_is_builtin(data, node->command[0]) == TRUE && cmd_number != 0)
@@ -66,6 +79,9 @@ int	ft_fork_funct(t_data *data, t_cmd *node, int cmd_number)
 
 int	ft_exec_cmd(t_data *data, t_cmd *node, int cmd_number)
 {
+    int	status;
+
+	status = 0;
     if (ft_is_builtin(data, node->command[0]) == TRUE && cmd_number == 0)
     {
         status = ft_builtin(data, node);
