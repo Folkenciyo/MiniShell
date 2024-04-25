@@ -33,4 +33,3 @@ void	console_init(t_data *data)
 	free(user);
 	clear_history();
 }
-
