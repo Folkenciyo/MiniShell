@@ -48,6 +48,7 @@ BUILDINS_DIR	= buildin/
 ENVP_LIST_DIR	= envp_list/
 PARSER_DIR		= parser/
 EXPANSION_DIR	= parser/expansion/
+CMD_DIR			= parser/cmd/
 FREE_DIR		= free/
 SIGS_DIR		= signals/
 OBJ_DIR			= obj/
@@ -68,8 +69,10 @@ ENVP_LIST	=	envp_list_manage
 SIGNALS		=	signals_handler
 BUILDINS	=	cd cd_utils tupla_utils tupla_utils2 export export_utils\
 				export_utils2 env env_utils refill_env_lst echo exit unset pwd
-PARSER		=	handlers token_init parser_utils
+PARSER		=	token_handlers token_init parser_utils handle_redir \
+				handle_here_doc
 EXPANSION	=	expansion utils
+CMD			=	cmd_fill cmd_init utils
 FREE		=	free_lsts
 PIPEX 		=	ft_pipex pipex_utils pipex_fd_builts_utils
 
@@ -81,6 +84,7 @@ SRC_FILES+=$(addprefix $(CONSOLE_DIR),$(CONSOLE))
 SRC_FILES+=$(addprefix $(SIGS_DIR),$(SIGNALS))
 SRC_FILES+=$(addprefix $(PARSER_DIR),$(PARSER))
 SRC_FILES+=$(addprefix $(EXPANSION_DIR),$(EXPANSION))
+SRC_FILES+=$(addprefix $(CMD_DIR),$(CMD))
 SRC_FILES+=$(addprefix $(FREE_DIR),$(FREE))
 SRC_FILES+=$(addprefix $(PIPEX_DIR),$(PIPEX))
 
@@ -126,6 +130,7 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)$(BUILDINS_DIR)
 			@mkdir -p $(OBJ_DIR)$(PARSER_DIR)
 			@mkdir -p $(OBJ_DIR)$(EXPANSION_DIR)
+			@mkdir -p $(OBJ_DIR)$(CMD_DIR)
 			@mkdir -p $(OBJ_DIR)$(FREE_DIR)
 
 # Rules

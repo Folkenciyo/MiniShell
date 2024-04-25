@@ -50,8 +50,8 @@ typedef struct s_cmd
 {
 	char				**comand;
 	char				**choosen_path;
-	int					*fd_in;
-	int					*fd_out;
+	int					fd_in;
+	int					fd_out;
 	struct s_cmd		*next;
 }						t_cmd;
 
@@ -592,13 +592,43 @@ int						is_space(char c);
 //handlers.c
 void					space_handler(t_data *data, char **str);
 void					word_handler(t_data *data, char **str);
-void					redir_handler(t_data *data,char **str);
-void					quotes_handler(t_data *data, char **str);
+void					redir_handler(t_data *data, char **str);
+int						quotes_handler(t_data *data, char **str);
+
+/****EXPANSION CORE*******/
+char					*envp_key(char *str);
+char					*envp_value(t_data *data, char *str);
+char					*get_env_value(t_data *data, char **input);
+int						get_new_len(t_data *data, char *str);
+int						valid_key(char c);
+void					expand(t_data *data, char *input);
+
+/****CMD FILL CORE*******/
+t_cmd					*new_cmd(void);
+void					add_cmd_back(t_cmd **cmd, t_cmd *new_cmd);
+int						unexpected_token(t_token *token);
+char					**add_to_comand(char **arr, char *new_str);
+
+/****REDIR_HANDLERS****/
+int						handle_redirections(t_cmd *cmd, int *fd_in,
+							t_token **token);
+void					cmd_create(t_data *data);
+int						redir_out_last(t_token *token);
+
+/**CMD UTILS**/
+void					change_cmd_out(t_cmd *cmd);
+int						status_check(int status);
+
+/****HERDE DOC HANDLERS***/
+int						here_doc_status(t_cmd *cmd, t_token *token);
 
 /********FUNCION TEMPORAL print_token*******/
 void					print_token(t_data *data);
+void					print_cmd(t_cmd *cmd);
 
 /****FREE LISTS****/
+void					restore_lists(t_data **data, char *input);
+void					free_all(t_data *data);
 void					free_token(t_token **token);
 
 #endif
