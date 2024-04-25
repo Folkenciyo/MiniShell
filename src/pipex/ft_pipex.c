@@ -98,6 +98,5 @@ int	ft_pipex(t_data *data)
         list = list->next;
         cmd_number++;
     }
-
     return (EXIT_SUCCESS);
 }
