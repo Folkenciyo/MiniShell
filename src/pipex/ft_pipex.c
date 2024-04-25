@@ -81,6 +81,15 @@ int	ft_exec_cmd(t_data *data, t_cmd *node, int cmd_number)
 
 int	ft_pipex(t_data *data)
 {
+    t_cmd	*list;
+	int		status;
+	int		cmd_number;
+
+	list = info->cmd_lst;
+	status = 0;
+	cmd_number = 0;
+	if (ft_lst_size(list) > 1)
+		cmd_number = 1;
     while (list)
     {
         status = ft_exec_cmd(data, list, cmd_number);
