@@ -35,7 +35,7 @@ void	change_token_value(t_data *data, char *key, char *value)
 	{
 		if (token->key == TKN_WORD || token->key == TKN_DQUOTES)
 		{
-			if (token->content && !ft_strncmp(token->content, key,
+			if (!ft_strncmp(token->content, key,
 					ft_strlen(key)))
 			{
 				token->content = ft_strdup(value);
@@ -59,13 +59,13 @@ void	expand(t_data *data, char *input)
 	{
 		if (*input == '$' && valid_key(*(input + 1)))
 		{
-			value = get_env_value(data, &input);
 			key = envp_key((input + 1));
+			value = get_env_value(data, &input);
 		}
 		input++;
 	}
 	if (value && key)
+	{
 		change_token_value(data, key, value);
-	free(value);
-	free(key);
+	}
 }
