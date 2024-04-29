@@ -60,11 +60,12 @@ typedef struct s_data
 	int					status;
 	int					exit;
 	char				**envp;
-	int 				g_batch_flag;
 	t_env_list			*envp_list;
 	t_token				*token_list;
 	t_cmd				*cmd_list;
 }						t_data;
+
+int						g_batch_flag;
 
 /******** INIT DATA *********/
 // init_data.c
