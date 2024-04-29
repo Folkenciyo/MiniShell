@@ -35,7 +35,7 @@ void	change_token_value(t_data *data, char *key, char *value)
 	{
 		if (token->key == TKN_WORD || token->key == TKN_DQUOTES)
 		{
-			if (!ft_strncmp(token->content, key,
+			if (token->content && !ft_strncmp(token->content, key,
 					ft_strlen(key)))
 			{
 				token->content = ft_strdup(value);
