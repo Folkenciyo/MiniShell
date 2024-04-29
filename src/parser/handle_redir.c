@@ -16,9 +16,9 @@ int	handle_pipe(t_cmd *cmd, int *fd_in)
 
 int	redir_in(t_token *token, t_cmd *cmd)
 {
-	if (cmd->fd_out > 2)
+	if (cmd->fd_in > 2)
 		close(cmd->fd_in);
-	cmd->fd_out = open(token->next->content, O_RDONLY);
+	cmd->fd_in = open(token->next->content, O_RDONLY);
 	if (cmd->fd_in == -1)
 		return (1);
 	token = token->next;
@@ -35,11 +35,16 @@ int	redir_out(t_token *token, t_cmd *cmd)
 {
 	if (cmd->fd_out > 2)
 		close(cmd->fd_out);
-	cmd->fd_out = open(token->next->content,
-			O_WRONLY | O_CREAT | O_APPEND,
-			0644);
+	if (token->key == TKN_REDIR_APPEND)
+		cmd->fd_out = open(token->next->content,
+				O_WRONLY | O_CREAT | O_APPEND,
+				0644);
+	else
+		cmd->fd_out = open(token->next->content,
+				O_WRONLY | O_CREAT | O_TRUNC,
+				0644);
 	if (cmd->fd_out == -1)
-		return (-1);
+		return (1);
 	token = token->next;
 	return (0);
 }
