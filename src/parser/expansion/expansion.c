@@ -59,13 +59,13 @@ void	expand(t_data *data, char *input)
 	{
 		if (*input == '$' && valid_key(*(input + 1)))
 		{
-			value = get_env_value(data, &input);
 			key = envp_key((input + 1));
+			value = get_env_value(data, &input);
 		}
 		input++;
 	}
 	if (value && key)
+	{
 		change_token_value(data, key, value);
-	free(value);
-	free(key);
+	}
 }
