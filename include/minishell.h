@@ -65,7 +65,7 @@ typedef struct s_data
 	t_cmd				*cmd_list;
 }						t_data;
 
-int						g_batch_flag;
+//int						g_batch_flag;
 
 /******** INIT DATA *********/
 // init_data.c
@@ -169,7 +169,9 @@ int						ft_cd_lastdir(t_data *data);
  * @param cmd 
  * @return int 
  */
-int 				   ft_echo(char **cmd);
+int 				   ft_echo(t_cmd *cmd_list, char **cmd);
+
+int						echo(t_data *data, char **cmd);
 
 //////////////////////// pws.c /////////////////////////
 /**

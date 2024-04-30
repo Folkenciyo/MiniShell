@@ -92,7 +92,7 @@ int	ft_exec_cmd(t_data *data, t_cmd *node, int cmd_number)
     }
     else
     {
-        g_batch_flag = 1;
+        //g_batch_flag = 1;
         return (ft_fork_funct(data, node, cmd_number));
     }
 }
@@ -111,7 +111,7 @@ int	ft_pipex(t_data *data)
     while (list)
     {
         status = ft_exec_cmd(data, list, cmd_number);
-        g_batch_flag = 0;
+        //g_batch_flag = 0;
         data->status = status;
         list = list->next;
         cmd_number++;
