@@ -17,6 +17,7 @@ char	*get_env_value(t_data *data, char **input)
 	else if (ft_isalpha(**input) || **input == '_' || ft_isdigit(**input))
 	{
 		key = envp_key(*input);
+		
 		value = envp_value(data, key);
 		if (!value)
 			return ("");
@@ -30,20 +31,23 @@ void	change_token_value(t_data *data, char *key, char *value)
 {
 	t_token	*token;
 
+
 	token = data->token_list;
 	while (token)
 	{
 		if (token->key == TKN_WORD || token->key == TKN_DQUOTES)
 		{
+			if (token->key == TKN_DQUOTES)
+				token->content++;
 			if (token->content && !ft_strncmp(token->content, key,
 					ft_strlen(key)))
 			{
 				token->content = ft_strdup(value);
 				token->len = ft_strlen(token->content);
 			}
-			if (token->key == TKN_DQUOTES || token->key == TKN_SQUOTES)
-				token->key = TKN_WORD;
 		}
+		if (token->key == TKN_DQUOTES)
+			token->key = TKN_WORD;
 		token = token->next;
 	}
 }

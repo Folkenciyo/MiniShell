@@ -18,10 +18,12 @@ char	*ft_strdup(const char *str)
 	size_t	i;
 	char	*p;
 
+	if (str == NULL)
+		return (NULL);
 	len = ft_strlen(str);
 	i = 0;
 	p = malloc(len + 1);
-	if (p == NULL || str == NULL)
+	if (p == NULL)
 		return (NULL);
 	while (i < len)
 	{

@@ -3,7 +3,7 @@
 static void	handler_c(int signal)
 {
 	(void)signal;
-/* 	if (g_batch_flag == 0)
+	if (g_batch_flag == 0)
 	{
 		rl_on_new_line();
 		rl_replace_line("", 0);
@@ -17,7 +17,7 @@ static void	handler_c(int signal)
 		write(1, "\n", 1);
 		rl_replace_line("", 1);
 		rl_on_new_line();
-	} */
+	} 
 }
 
 void	signals_call(void)
