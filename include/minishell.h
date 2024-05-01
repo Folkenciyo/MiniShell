@@ -65,7 +65,7 @@ typedef struct s_data
 	t_cmd				*cmd_list;
 }						t_data;
 
-//int						g_batch_flag;
+int						g_batch_flag;
 
 /******** INIT DATA *********/
 // init_data.c

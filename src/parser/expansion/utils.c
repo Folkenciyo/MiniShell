@@ -24,7 +24,7 @@ char	*envp_value(t_data *data, char *str)
 	env = data->envp_list;
 	while (env)
 	{
-		if (env->key && !ft_strncmp(env->key, key, ft_strlen(key)))
+		if (env->key && !ft_strncmp(env->key, key, ft_strlen(env->key)))
 			break ;
 		env = env->next;
 	}
