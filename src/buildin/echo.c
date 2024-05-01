@@ -25,13 +25,11 @@ static int	ft_is_nl(char **str)
 int	ft_echo(t_cmd *cmd_list, char **cmd)
 {
 	int		idx;
-    t_cmd   *tmp;
 
-    tmp = cmd_list;
+	(void)cmd_list;
 	idx = 1;
-
-    tmp = tmp->next;
-    printf("msg: %s\n", tmp->command[0]);
+	printf("cmd[%d]: %s\n", 0, cmd[0]);
+	printf("cmd[%d]: %s\n", 1, cmd[1]);
 	if (!cmd[1])
 	{
 		ft_putstr_fd("\n", STDOUT);
@@ -41,11 +39,9 @@ int	ft_echo(t_cmd *cmd_list, char **cmd)
 		idx++;
 	while (cmd[idx])
 	{
-        printf("cmd[%d]: %s\n", idx, cmd[idx]);
 		ft_putstr_fd(cmd[idx], STDOUT);
 		idx++;
 	}
-    printf("cmd[%d]: %s\n", idx, cmd[idx]);
 	if (ft_is_nl(cmd) == FALSE)
 		write(STDOUT, "\n", 1);
 	return (EXIT_SUCCESS);
@@ -53,9 +49,8 @@ int	ft_echo(t_cmd *cmd_list, char **cmd)
 
 int	echo(t_data *data, char **cmd)
 {
-    printf("hello");
 	if (ft_strncmp(cmd[0], "echo", 4) == 0 && cmd[0][4] == '\0')
 		return (ft_echo(data->cmd_list, cmd));
 	else
-		return (WRONG_ARG);
+		return(WRONG_ARG);
 }
