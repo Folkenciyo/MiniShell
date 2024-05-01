@@ -28,8 +28,8 @@ int	ft_echo(t_cmd *cmd_list, char **cmd)
 
 	(void)cmd_list;
 	idx = 1;
-	printf("cmd[%d]: %s\n", 0, cmd[0]);
-	printf("cmd[%d]: %s\n", 1, cmd[1]);
+	// printf("cmd[%d]: %s\n", 0, cmd[0]);
+	// printf("cmd[%d]: %s\n", 1, cmd[1]);
 	if (!cmd[1])
 	{
 		ft_putstr_fd("\n", STDOUT);

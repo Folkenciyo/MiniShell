@@ -41,9 +41,9 @@ void	change_token_value(t_data *data, char *key, char *value)
 				token->content = ft_strdup(value);
 				token->len = ft_strlen(token->content);
 			}
+		}
 		if (token->key == TKN_DQUOTES || token->key == TKN_SQUOTES)
 			token->key = TKN_WORD;
-		}
 		token = token->next;
 	}
 }

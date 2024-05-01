@@ -14,7 +14,8 @@ void	new_cmd_if(t_cmd **cmd_lst, t_cmd **new, int key)
 
 void	add_word_cmd(t_cmd **new, t_token **token, int *status, int *fd_in)
 {
-	while (*token && (*token)->key == TKN_WORD)
+	while (*token && ((*token)->key == TKN_WORD 
+	|| ((*token)->key == TKN_SQUOTES ) || ((*token)->key == TKN_DQUOTES)))
 	{
 		(*new)->command = add_to_command((*new)->command, (*token)->content);
 		if (!(*token)->next && handle_redirections(*new, fd_in, token))
