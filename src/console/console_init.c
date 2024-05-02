@@ -20,11 +20,9 @@ void	console_init(t_data *data)
 		}
 		if(token_maker(data, input))
 			continue;
-		
-		expand(data, input);
+		expand(data);
 		cmd_create(data);
 		ft_pipex(data);
-		
 		if (*input != '\0')
 			add_history(input);
 		restore_lists(&data, input);

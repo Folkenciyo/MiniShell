@@ -1,6 +1,7 @@
 
 #include "minishell.h"
 
+
 char	*get_env_value(t_data *data, char **input)
 {
 	char	*value;
@@ -17,17 +18,81 @@ char	*get_env_value(t_data *data, char **input)
 	else if (ft_isalpha(**input) || **input == '_' || ft_isdigit(**input))
 	{
 		key = envp_key(*input);
-		
 		value = envp_value(data, key);
 		if (!value)
-			return ("");
+			value = ft_strdup("");
 		(*input) += ft_strlen(key);
+		free(key);
 	}
-	free(key);
 	return (value);
 }
 
-void	change_token_value(t_data *data, char *key, char *value)
+
+char *process_value(t_data *data, t_token *token, char *value, int *len)
+{
+	char *new_str;
+	char *result;
+
+	new_str = (char*)malloc(token->len + 1);
+	if (!new_str)
+		return (NULL);
+	new_str[token->len] = '\0';
+	while (*value)
+	{
+		if (*value == '$' && valid_key(*(value + 1)))
+		{
+			result = get_env_value(data, &value);
+			if (result != NULL)
+				append_env_value(new_str, result, len);
+		}
+		else
+		{
+			new_str[*len] = *value;
+			(*len)++;
+			value++;
+		}
+	}
+	return (new_str);
+	
+}
+
+int	get_new_len(t_data *data,char *content)
+{
+	int		len;
+	char	*value;
+
+	value = NULL;
+	len = 0;
+	while (*content)
+	{
+		if (*content == '$' && *(content + 1) && valid_key(*(content + 1)))
+		{
+			value = get_env_value(data, &content);
+			len += ft_strlen(value);
+		}
+		else
+		{
+			len++;
+			content++;
+		}
+	}
+	return (len);
+}
+
+char	*get_new_value(t_data *data, t_token *token)
+{
+	char	*value;
+	char	*new_value;
+	int		len;
+
+	len = 0;
+	value = token->content;
+	new_value = process_value(data, token, value, &len);
+	free(value);
+	return (new_value);
+}
+
+void	expand(t_data *data)
 {
 	t_token	*token;
 
@@ -37,39 +102,12 @@ void	change_token_value(t_data *data, char *key, char *value)
 	{
 		if (token->key == TKN_WORD || token->key == TKN_DQUOTES)
 		{
-			if (token->key == TKN_DQUOTES)
-				token->content++;
-			if (token->content && !ft_strncmp(token->content, key,
-					ft_strlen(key)))
-			{
-				token->content = ft_strdup(value);
-				token->len = ft_strlen(token->content);
-			}
+			token->len = get_new_len(data, token->content);
+			token->content = get_new_value(data, token);
 		}
-		if (token->key == TKN_DQUOTES)
+		if (token->key == TKN_DQUOTES || token->key == TKN_SQUOTES)
 			token->key = TKN_WORD;
 		token = token->next;
 	}
 }
 
-void	expand(t_data *data, char *input)
-{
-	char	*key;
-	char	*value;
-
-	value = NULL;
-	key = NULL;
-	while (*input)
-	{
-		if (*input == '$' && valid_key(*(input + 1)))
-		{
-			key = envp_key((input + 1));
-			value = get_env_value(data, &input);
-		}
-		input++;
-	}
-	if (value && key)
-	{
-		change_token_value(data, key, value);
-	}
-}
