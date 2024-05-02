@@ -1,7 +1,6 @@
 
 #include "minishell.h"
 
-//para sacar del input si hay algo seguido de un dolar
 char	*envp_key(char *str)
 {
 	int	i;
@@ -9,8 +8,7 @@ char	*envp_key(char *str)
 	i = 0;
 	if (ft_isdigit(*str))
 		return (ft_strndup(str, i));
-	while (str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '\''
-		&& str[i] != '\"')
+	while (str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '\'')
 		i++;
 	return (ft_strndup(str, i));
 }

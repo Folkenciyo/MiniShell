@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-// NOT TOCAR ESTA SUABON
+
 char	*get_env_value(t_data *data, char **input)
 {
 	char	*value;
@@ -20,7 +20,7 @@ char	*get_env_value(t_data *data, char **input)
 		key = envp_key(*input);
 		value = envp_value(data, key);
 		if (!value)
-			return ("");
+			value = ft_strdup("");
 		(*input) += ft_strlen(key);
 		free(key);
 	}
@@ -42,7 +42,7 @@ char *process_value(t_data *data, t_token *token, char *value, int *len)
 		if (*value == '$' && valid_key(*(value + 1)))
 		{
 			result = get_env_value(data, &value);
-			if (result)
+			if (result != NULL)
 				append_env_value(new_str, result, len);
 		}
 		else
@@ -100,7 +100,7 @@ void	expand(t_data *data)
 	token = data->token_list;
 	while (token)
 	{
-		if (token->key == TKN_WORD )
+		if (token->key == TKN_WORD || token->key == TKN_DQUOTES)
 		{
 			token->len = get_new_len(data, token->content);
 			token->content = get_new_value(data, token);
