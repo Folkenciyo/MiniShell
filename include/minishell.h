@@ -608,10 +608,10 @@ int						quotes_handler(t_data *data, char **str);
 /****EXPANSION CORE*******/
 char					*envp_key(char *str);
 char					*envp_value(t_data *data, char *str);
-char					*get_env_value(t_data *data, char **input);
+char					*get_env_value(t_data *data, char *input);
 int						get_new_len(t_data *data, char *str);
 int						valid_key(char c);
-void					expand(t_data *data, char *input);
+void					expand(t_data *data);
 
 /****CMD FILL CORE*******/
 t_cmd					*new_cmd(void);

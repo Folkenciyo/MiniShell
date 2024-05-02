@@ -1,27 +1,27 @@
 
 #include "minishell.h"
 
-char	*get_env_value(t_data *data, char **input)
+char	*get_env_value(t_data *data, char *input)
 {
 	char	*value;
 	char	*key;
 
 	key = NULL;
 	value = NULL;
-	(*input)++;
-	if (**input == '?')
+	// (*input)++;
+	if (*input == '?')
 	{
 		value = ft_itoa(data->status);
-		(*input)++;
+		input++;
 	}
-	else if (ft_isalpha(**input) || **input == '_' || ft_isdigit(**input))
+	else if (ft_isalpha(*input) || *input == '_' || ft_isdigit(*input))
 	{
-		key = envp_key(*input);
+		key = envp_key(input);
 		
 		value = envp_value(data, key);
 		if (!value)
 			return ("");
-		(*input) += ft_strlen(key);
+		input += ft_strlen(key);
 	}
 	free(key);
 	return (value);
@@ -31,6 +31,23 @@ void	change_token_value(t_data *data, char *key, char *value)
 {
 	t_token	*token;
 
+	token = data->token_list;
+	if (token->content && !ft_strncmp(token->content, key,
+			ft_strlen(key)))
+	{
+		token->content = ft_strdup(value);
+		token->len = ft_strlen(token->content);
+	}
+	if (token->key == TKN_DQUOTES)
+		token->key = TKN_WORD;
+
+}
+
+void	expand(t_data *data)
+{
+	t_token	*token;
+	char	*key;
+	char	*value;
 
 	token = data->token_list;
 	while (token)
@@ -39,37 +56,14 @@ void	change_token_value(t_data *data, char *key, char *value)
 		{
 			if (token->key == TKN_DQUOTES)
 				token->content++;
-			if (token->content && !ft_strncmp(token->content, key,
-					ft_strlen(key)))
-			{
-				token->content = ft_strdup(value);
-				token->len = ft_strlen(token->content);
-			}
+			key = envp_key(token->content);
+			value = get_env_value(data, token->content);
 		}
-		if (token->key == TKN_DQUOTES)
-			token->key = TKN_WORD;
+		if (value && key)
+		{
+			change_token_value(data, key, value);
+		}
 		token = token->next;
 	}
-}
-
-void	expand(t_data *data, char *input)
-{
-	char	*key;
-	char	*value;
-
-	value = NULL;
-	key = NULL;
-	while (*input)
-	{
-		if (*input == '$' && valid_key(*(input + 1)))
-		{
-			key = envp_key((input + 1));
-			value = get_env_value(data, &input);
-		}
-		input++;
-	}
-	if (value && key)
-	{
-		change_token_value(data, key, value);
-	}
+	
 }
