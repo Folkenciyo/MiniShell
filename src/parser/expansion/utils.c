@@ -40,3 +40,13 @@ int	valid_key(char c)
 		return (1);
 	return (0);
 }
+
+
+void append_env_value(char *str, const char *value, int *current)
+{
+	int len;
+
+	len = ft_strlen(value);
+	ft_memcpy(str + (*current), value, len);
+	(*current) += len;
+}
