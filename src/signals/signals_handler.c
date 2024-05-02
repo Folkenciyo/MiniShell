@@ -6,6 +6,7 @@ static void	handler_c(int signal)
 	if (g_batch_flag == 0)
 	{
 		rl_on_new_line();
+		rl_redisplay();
 		rl_replace_line("", 0);
 		write(1, "\033[K\n", 5);
 		rl_on_new_line();
