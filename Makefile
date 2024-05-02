@@ -103,12 +103,12 @@ $(NAME):	$(OBJS)
 			@make -C $(LIBFT)
 			@cp libft/libft.a .
 			@mv libft.a $(NAME)
-			@$(CC) $(OBJS) -o $(NAME) $(LIBFT)/libft.a $(HEADER) 
+			@$(CC) $(OBJS) -o $(NAME) $(LIBFT)/libft.a $(HEADER) -lreadline
 			@echo "$(GREEN)MiniShell compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 			@echo "$(MAGENTA)Compiling: $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+			@$(CC) $(CFLAGS) $(INCLUDE) -I /Users/$(USER)/.brew/opt/readline/include -c $< -o $@
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
@@ -155,5 +155,15 @@ re:			fclean all
 			@echo "$(BLUE):::     ::   $(YELLOW) ::  $(GREEN) ::   ::  $(PURPLE) ::  $(CYAN):::: ::   $(RED)::   :::   :: ::::   :: ::::   :: ::::$(DEF_COLOR)"
 			@echo "$(BLUE) :      :    $(YELLOW):    $(GREEN)::    :   $(PURPLE):    $(CYAN):: : :    $(RED) :   : :  : :: ::   : :: : :  : :: : :$(DEF_COLOR)"
 			@echo ""	
+
+git:
+			@git add .
+			@git commit -m "Makefile auto commit"
+			@git push
+
+push_to_juan:
+			@git add .
+			@git commit -m "Makefile auto commit"
+			
 
 .PHONY:		all clean fclean re git
