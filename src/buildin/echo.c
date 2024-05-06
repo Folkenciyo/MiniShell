@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-
 static int	ft_is_nl(char **str)
 {
 	if (!str[1])
@@ -28,13 +27,13 @@ int	ft_echo(t_cmd *cmd_list, char **cmd)
 
 	(void)cmd_list;
 	idx = 1;
-	// printf("cmd[%d]: %s\n", 0, cmd[0]);
-	// printf("cmd[%d]: %s\n", 1, cmd[1]);
 	if (!cmd[1])
 	{
 		ft_putstr_fd("\n", STDOUT);
 		return (EXIT_SUCCESS);
 	}
+	if (ft_strncmp(cmd[idx], "-n", 2) == 0 && !cmd[idx + 1])
+		return (EXIT_SUCCESS);
 	while (ft_strncmp(cmd[idx], "-n", 2) == 0 && cmd[idx][2] == '\0')
 		idx++;
 	while (cmd[idx])
@@ -52,5 +51,5 @@ int	echo(t_data *data, char **cmd)
 	if (ft_strncmp(cmd[0], "echo", 4) == 0 && cmd[0][4] == '\0')
 		return (ft_echo(data->cmd_list, cmd));
 	else
-		return(WRONG_ARG);
+		return (WRONG_ARG);
 }

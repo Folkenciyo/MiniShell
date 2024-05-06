@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-
 int	ft_env(t_data *data)
 {
 	char	*value;

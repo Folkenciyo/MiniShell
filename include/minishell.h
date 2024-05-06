@@ -54,7 +54,7 @@ typedef struct s_cmd
 	struct s_cmd		*next;
 }						t_cmd;
 
-typedef struct s_data
+typedef struct s_dataa
 {
 	char				*built_in_cmd[8];
 	int					status;
@@ -70,6 +70,7 @@ int						g_batch_flag;
 /******** INIT DATA *********/
 // init_data.c
 int						init_data(t_data *data, char **envp);
+void					init_env_list(t_data *data, char **envp);
 
 /******** ENV LIST *********/
 // envp_list_manage.c
@@ -122,8 +123,8 @@ void					ft_free_dirs(char *s1, char *s2, char *s3);
  * @param data 
  * @return int 
  */
-int        	            ft_cd_home(t_data *data);
-int        	            ft_cd_lastdir(t_data *data);
+int						ft_cd_home(t_data *data);
+int						ft_cd_lastdir(t_data *data);
 /**
  * @brief Actualiza las variables de entorno OLDPWD con el directorio actual
  * y PWD con el nuevo directorio
@@ -132,7 +133,7 @@ int        	            ft_cd_lastdir(t_data *data);
  * @param current_dir 
  * @param new_dir 
  */
-void					ft_update_pwds(t_data *data, char *current_dir, char *new_dir);
+void					ft_upd_pwds(t_data *data, char *c_dir, char *new_dir);
 /**
  * @brief Cambia a un directorio especificado por el usuario
  * 
@@ -169,7 +170,7 @@ int						ft_cd_lastdir(t_data *data);
  * @param cmd 
  * @return int 
  */
-int 				   ft_echo(t_cmd *cmd_list, char **cmd);
+int						ft_echo(t_cmd *cmd_list, char **cmd);
 
 int						echo(t_data *data, char **cmd);
 
@@ -182,7 +183,8 @@ int						echo(t_data *data, char **cmd);
  */
 int 					ft_pwd(void);
 /**
- * @brief Verifica si el commando es "pwd" y, si es así, llama a la función ft_pwd
+ * @brief Verifica si el commando es "pwd" y, si es así, llama a la 
+ * función ft_pwd
  * 
  * @param cmd 
  * @return int 
@@ -251,7 +253,8 @@ int						ft_env_exists(char *tuple, char **envp);
 int 					ft_print_error(char *cmd);
 /**
  * @brief Implementa el commando export:
- * Si no hay argumentos después de "export", imprime todas las variables de entorno.
+ * Si no hay argumentos después de "export", imprime todas las 
+ * variables de entorno.
  * Si hay argumentos después de "export", añade las variables de entorno.
  * 
  * @param data 
@@ -264,7 +267,7 @@ int						export(t_data *data, char **cmd);
  * 
  * @param data 
  */
-int 				  	ft_export(t_data *data, char *tuple);
+int						ft_export(t_data *data, char *tuple);
 
 ////////////////////// export_utils.c ///////////////////////
 /**
@@ -383,7 +386,8 @@ int 					ft_init_envp(t_data *data, char **envp);
  */
 void					ft_t_lstclear(t_env_list **envp_lst);
 /**
- * @brief Actualiza la lista de variables de entorno con la nueva matriz de cadenas
+ * @brief Actualiza la lista de variables de entorno con la nueva 
+ * matriz de cadenas
  * 
  * @param data 
  * @param new_envp 
@@ -437,7 +441,8 @@ int						exit1(t_data *data, char **cmd);
  */
 int						ft_unset(t_data *data, char *tuple);
 /**
- * @brief Verifica si el commando es "unset" y, si es así, llama a la función ft_unset
+ * @brief Verifica si el commando es "unset" y, si es así, llama a la 
+ * función ft_unset
  * 
  * @param data 
  * @param cmd 
@@ -476,13 +481,7 @@ int						ft_exec_cmd(t_data *data, t_cmd *list, int cmd_number);
  * @param node
  * @param cmd_number
 */
-int 					ft_fork_funct(t_data *data, t_cmd *node, int cmd_number);
-/**
- * @brief Cierra los descriptores de archivo de un nodo
- * 
- * @param node
-*/
-void					ft_close_fds(t_cmd *node);
+int						ft_fork(t_data *data, t_cmd *node, int cmd_number);
 /**
  * @brief Ejecuta un commando en un proceso hijo
  * 
@@ -498,16 +497,17 @@ int						ft_child_process(t_data *data, t_cmd *node);
  * @param list
  * @return
  */
-int 					ft_list_len(t_cmd *list);
+int						ft_list_len(t_cmd *list);
 
 /**
  * @brief Redirige un descriptor de archivo a la entrada o salida estándar.
  * 
  * @param fd El descriptor de archivo a redirigir.
- * @param std El descriptor de archivo estándar al que se redirige (STDIN o STDOUT).
+ * @param std El descriptor de archivo estándar al que se redirige (STDIN 
+ * o STDOUT).
  * @param fd2 El descriptor de archivo a duplicar.
  */
-void 					ft_redir_fd_std(int fd, int std, int fd2);
+void					ft_redir_fd_std(int fd, int std, int fd2);
 
 /**
  * @brief Ejecuta un commando integrado.
@@ -516,7 +516,7 @@ void 					ft_redir_fd_std(int fd, int std, int fd2);
  * @param cmd El commando a ejecutar.
  * @return int El estado de la ejecución del commando.
  */
-int 					ft_exec_builtin(t_data *data, char **cmd);
+int						ft_exec_builtin(t_data *data, char **cmd);
 
 /**
  * @brief Verifica si un commando es un commando integrado y lo ejecuta.
@@ -525,7 +525,7 @@ int 					ft_exec_builtin(t_data *data, char **cmd);
  * @param node El nodo de commando a verificar y ejecutar.
  * @return int El estado de la ejecución del commando.
  */
-int 					ft_built_in(t_data *data, t_cmd *node);
+int						ft_built_in(t_data *data, t_cmd *node);
 
 /**
  * @brief Verifica si una cadena es un comando integrado.
@@ -534,7 +534,7 @@ int 					ft_built_in(t_data *data, t_cmd *node);
  * @param str La cadena a verificar.
  * @return int 1 si la cadena es un comando integrado, 0 en caso contrario.
  */
-int 					ft_cmd_is_built_in(t_data *data, char *str);
+int						ft_cmd_is_built_in(t_data *data, char *str);
 
 ///////////////////// pipex_utils.c ///////////////////////
 /**
@@ -544,7 +544,7 @@ int 					ft_cmd_is_built_in(t_data *data, char *str);
  * @param envp El array de variables de entorno.
  * @return char* La ruta absoluta del binario del comando.
  */
-char 					*abs_bin_path(char *cmd, char **envp);
+char					*abs_bin_path(char *cmd, char **envp);
 
 /**
  * @brief Obtiene las rutas de los directorios en la variable de entorno PATH.
@@ -552,7 +552,7 @@ char 					*abs_bin_path(char *cmd, char **envp);
  * @param envp El array de variables de entorno.
  * @return char** Un array de cadenas con las rutas de los directorios en PATH.
  */
-char 					**get_paths(char *envp[]);
+char					**get_paths(char *envp[]);
 
 /**
  * @brief Verifica si una cadena es un comando integrado.
@@ -561,7 +561,7 @@ char 					**get_paths(char *envp[]);
  * @param str La cadena a verificar.
  * @return int 1 si la cadena es un comando integrado, 0 en caso contrario.
  */
-int 					ft_is_builtin(t_data *data, char *str);
+int						ft_is_builtin(t_data *data, char *str);
 
 /**
  * @brief Verifica si un comando es válido.
@@ -569,7 +569,7 @@ int 					ft_is_builtin(t_data *data, char *str);
  * @param cmd El comando a verificar.
  * @return char* El comando si es válido, NULL en caso contrario.
  */
-char 					*ft_valid_cmd(char *cmd);
+char					*ft_valid_cmd(char *cmd);
 
 /**
  * @brief Imprime un mensaje de error relacionado con un comando.
@@ -577,7 +577,7 @@ char 					*ft_valid_cmd(char *cmd);
  * @param cmd El comando que causó el error.
  * @return int Un código de error.
  */
-int 					ft_print_error(char *cmd);
+int						ft_print_error(char *cmd);
 
 //****** CONSOLE INIT*****/
 //console_init.c
@@ -589,8 +589,8 @@ void					signals_call(void);
 
 //*******TOKEN FILL*********/
 //token_init.c
-void    				fill_token(t_data *data, int key, char *value);
-int     				token_maker(t_data *data,char *str);
+void					fill_token(t_data *data, int key, char *value);
+int						token_maker(t_data *data,char *str);
 
 /*UTILS FOR THE PARSER*/
 

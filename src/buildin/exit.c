@@ -12,11 +12,6 @@
 
 #include "minishell.h" 
 
-
-//We shall see if we receive a string or a num;
-//Either we convert the string or we operate with the int
-//If no int with exit call, just put a 0
-
 static int	ft_isnum(char *str)
 {
 	size_t	size;

@@ -41,7 +41,6 @@ void	ft_redir_fd_std(int fd, int std, int fd2)
 	}
 }
 
-
 int	ft_built_in(t_data *data, t_cmd *node)
 {
 	int	status;

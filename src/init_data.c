@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:01:53 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/25 15:16:19 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:04:42 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	exist_env(t_data *data, t_env_list *new, t_env_list *tmp)
+{
+	if (!data->envp_list)
+		data->envp_list = new;
+	else
+	{
+		tmp = data->envp_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+	return (0);
+}
 
 void	init_env_list(t_data *data, char **envp)
 {
@@ -19,6 +33,7 @@ void	init_env_list(t_data *data, char **envp)
 	char		*delimiter;
 	int			i;
 
+	tmp = NULL;
 	i = 0;
 	while (envp[i])
 	{
@@ -32,15 +47,7 @@ void	init_env_list(t_data *data, char **envp)
 		new->key = ft_substr(envp[i], 0, delimiter - envp[i]);
 		new->value = ft_strdup(delimiter + 1);
 		new->next = NULL;
-		if (!data->envp_list)
-			data->envp_list = new;
-		else
-		{
-			tmp = data->envp_list;
-			while (tmp->next)
-				tmp = tmp->next;
-			tmp->next = new;
-		}
+		exist_env(data, new, tmp);
 		i++;
 	}
 }

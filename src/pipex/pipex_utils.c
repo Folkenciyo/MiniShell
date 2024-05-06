@@ -12,8 +12,6 @@
 
 #include "minishell.h"
 
-
-
 int	ft_print_error(char *error)
 {
 	perror(error);
