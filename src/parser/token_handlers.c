@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_handlers.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/05 20:02:47 by pjimenez          #+#    #+#             */
+/*   Updated: 2024/05/05 20:02:50 by pjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-//SIN APLICAR HASTA NUEVO AVISO
 void	space_handler(t_data *data, char **str)
 {
 	char	*tmp;

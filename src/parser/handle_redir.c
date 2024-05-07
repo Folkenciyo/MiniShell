@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_redir.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/05 20:02:37 by pjimenez          #+#    #+#             */
+/*   Updated: 2024/05/07 18:42:08 by pjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	handle_pipe(t_cmd *cmd, int *fd_in)
@@ -35,14 +47,16 @@ int	redir_out(t_token *token, t_cmd *cmd)
 {
 	if (cmd->fd_out > 2)
 		close(cmd->fd_out);
-	if (token->key == TKN_REDIR_APPEND)
-		cmd->fd_out = open(token->next->content,
-				O_WRONLY | O_CREAT | O_APPEND,
-				0644);
-	else
+	if (token->key == TKN_REDIR_OUT)
 		cmd->fd_out = open(token->next->content,
 				O_WRONLY | O_CREAT | O_TRUNC,
 				0644);
+	else
+	{
+		cmd->fd_out = open(token->next->content,
+				O_WRONLY | O_CREAT | O_APPEND,
+				0644);
+	}
 	if (cmd->fd_out == -1)
 		return (1);
 	token = token->next;
@@ -61,7 +75,7 @@ int	handle_redirections(t_cmd *cmd, int *fd_in, t_token **token)
 	else if ((*token)->key == TKN_REDIR_IN)
 		return (redir_in(*token, cmd));
 	else if ((*token)->key == TKN_REDIR_OUT
-			|| (*token)->key == TKN_REDIR_APPEND)
+		|| (*token)->key == TKN_REDIR_APPEND)
 		return (redir_out(*token, cmd));
 	else if ((*token)->key == TKN_REDIR_SOURCE)
 		return (here_doc_status(cmd, *token));

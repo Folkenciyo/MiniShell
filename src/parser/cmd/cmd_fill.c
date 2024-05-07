@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_fill.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/05 20:02:05 by pjimenez          #+#    #+#             */
+/*   Updated: 2024/05/07 18:47:53 by pjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-//Crea el nodo cmd para despues este nodo pasarselo a otra funcion que
-//crea el string del commando en si
 void	new_cmd_if(t_cmd **cmd_lst, t_cmd **new, int key)
 {
 	if (!*new || (new && (*new)->command[0] && !(key == TKN_REDIR_APPEND
@@ -14,8 +24,8 @@ void	new_cmd_if(t_cmd **cmd_lst, t_cmd **new, int key)
 
 void	add_word_cmd(t_cmd **new, t_token **token, int *status, int *fd_in)
 {
-	while (*token && ((*token)->key == TKN_WORD 
-	|| ((*token)->key == TKN_SQUOTES ) || ((*token)->key == TKN_DQUOTES)))
+	while (*token && ((*token)->key == TKN_WORD || (*token)->key == TKN_SQUOTES
+			|| ((*token)->key == TKN_DQUOTES)))
 	{
 		(*new)->command = add_to_command((*new)->command, (*token)->content);
 		if (!(*token)->next && handle_redirections(*new, fd_in, token))

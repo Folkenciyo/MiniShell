@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signals_handler.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/07 18:57:15 by pjimenez          #+#    #+#             */
+/*   Updated: 2024/05/07 18:57:15 by pjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	handler_c(int signal)
@@ -18,7 +30,7 @@ static void	handler_c(int signal)
 		write(1, "\n", 1);
 		rl_replace_line("", 1);
 		rl_on_new_line();
-	} 
+	}
 }
 
 void	signals_call(void)

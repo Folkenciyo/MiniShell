@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_lsts.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/07 18:56:33 by pjimenez          #+#    #+#             */
+/*   Updated: 2024/05/07 18:57:46 by pjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -63,7 +74,7 @@ void	free_envp(t_env_list **envp)
 
 void	free_all(t_data *data)
 {
-	int	i; 
+	int	i;
 
 	i = 0;
 	while (data->built_in_cmd[i])

@@ -1,25 +1,34 @@
-#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   console_init.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/07 18:48:28 by pjimenez          #+#    #+#             */
+/*   Updated: 2024/05/07 19:00:00 by pjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "minishell.h"
 
 void	console_init(t_data *data)
 {
 	char	*input;
-	char	*user;
 
-	user = ft_strjoin(getenv("USER"), "$ ");
 	while (data->exit != 1)
 	{
 		signals_call();
-		input = readline(user);
+		input = readline(ft_strjoin(getenv("USER"), "$ "));
 		if (!input)
 		{
 			free(input);
 			printf("exit\n");
 			data->exit = 1;
-			continue;
+			continue ;
 		}
-		if(token_maker(data, input))
-			continue;
+		if (token_maker(data, input))
+			continue ;
 		expand(data);
 		cmd_create(data);
 		ft_pipex(data);
@@ -27,7 +36,5 @@ void	console_init(t_data *data)
 			add_history(input);
 		restore_lists(&data, input);
 	}
-	free(user);
 	clear_history();
 }
-
