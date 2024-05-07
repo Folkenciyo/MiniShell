@@ -20,7 +20,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argv;
 	if (argc != 1)
-		return (printf("\033[0;31mError:\t\033[0;21mToo many arguments\n\033[0;m"));
+		return (printf("\033[0;31mError:Too many arguments\n\033[0;m"));
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		return (printf("\033[0;31mError:\t\033[0;21mMalloc failed\n\033[0;m"));

@@ -181,7 +181,7 @@ int						echo(t_data *data, char **cmd);
  * 
  * @return int 
  */
-int 					ft_pwd(void);
+int						ft_pwd(void);
 /**
  * @brief Verifica si el commando es "pwd" y, si es así, llama a la 
  * función ft_pwd
@@ -189,7 +189,7 @@ int 					ft_pwd(void);
  * @param cmd 
  * @return int 
  */
-int 					pwd(char **cmd);
+int						pwd(char **cmd);
 
 ////////////////////// tuple_utils.c ///////////////////////
 /**
@@ -250,7 +250,7 @@ int						ft_env_exists(char *tuple, char **envp);
  * @param cmd 
  * @return int 
  */
-int 					ft_print_error(char *cmd);
+int						ft_print_error(char *cmd);
 /**
  * @brief Implementa el commando export:
  * Si no hay argumentos después de "export", imprime todas las 
@@ -314,7 +314,7 @@ char					**ft_add_to_matrix(char **envp, char *tuple);
  * @param line 
  * @return int 
  */
-int 					ft_empty_line(char *line);
+int						ft_empty_line(char *line);
 /**
  * @brief Verifica si la cadena tiene más de un signo "="
  * 
@@ -345,7 +345,7 @@ int						ft_max_len(char *str1, char *str2);
  * @param new_envp 
  * @return char* 
  */
-int 					ft_not_in_matrix(char *str, char **matrix);
+int						ft_not_in_matrix(char *str, char **matrix);
 
 ////////////////////// env_utils.c ///////////////////////
 /**
@@ -376,7 +376,7 @@ char					**ft_copy_matrix(char **envp);
  * @param envp 
  * @return int 
  */
-int 					ft_init_envp(t_data *data, char **envp);
+int						ft_init_envp(t_data *data, char **envp);
 
 ////////////////// refill_env_lst.c /////////////////////
 /**
@@ -455,7 +455,7 @@ int						unset(t_data *data, char **cmd);
  * @param data 
  * @param tuple 
  */
-void 					ft_delete_variable(t_data *data, char *tuple);
+void					ft_delete_variable(t_data *data, char *tuple);
 
 /******** PIPEX *********/
 
@@ -590,7 +590,7 @@ void					signals_call(void);
 //*******TOKEN FILL*********/
 //token_init.c
 void					fill_token(t_data *data, int key, char *value);
-int						token_maker(t_data *data,char *str);
+int						token_maker(t_data *data, char *str);
 
 /*UTILS FOR THE PARSER*/
 
@@ -609,7 +609,8 @@ int						quotes_handler(t_data *data, char **str);
 char					*envp_key(char *str);
 char					*envp_value(t_data *data, char *str);
 char					*get_env_value(t_data *data, char **input);
-void 					append_env_value(char *str, const char *value, int *current);
+void					append_env_value(char *str, const char *value,
+							int *current);
 int						get_new_len(t_data *data, char *content);
 int						valid_key(char c);
 void					expand(t_data *data);

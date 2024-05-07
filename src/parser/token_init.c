@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 18:15:41 by juguerre          #+#    #+#             */
-/*   Updated: 2024/04/25 15:17:48 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:47:45 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,4 @@ int	token_maker(t_data *data, char *str)
 	if (quotes)
 		return (free_token(&data->token_list), free(str), 1);
 	return (0);
-}
-
-void	print_token(t_data *data)
-{
-	t_token	*token;
-
-	token = data->token_list;
-	while (token)
-	{
-		printf("key : %d\n", token->key);
-		printf("content : %s\n", token->content);
-		printf("len : %d\n", token->len);
-		printf("--------------------------------------------\n");
-		token = token->next;
-	}
 }

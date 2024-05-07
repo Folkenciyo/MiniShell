@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expansion.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/05 20:02:20 by pjimenez          #+#    #+#             */
+/*   Updated: 2024/05/05 20:02:20 by pjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
-
 
 char	*get_env_value(t_data *data, char **input)
 {
@@ -27,13 +37,12 @@ char	*get_env_value(t_data *data, char **input)
 	return (value);
 }
 
-
-char *process_value(t_data *data, t_token *token, char *value, int *len)
+char	*process_value(t_data *data, t_token *token, char *value, int *len)
 {
-	char *new_str;
-	char *result;
+	char	*new_str;
+	char	*result;
 
-	new_str = (char*)malloc(token->len + 1);
+	new_str = (char *) malloc(token->len + 1);
 	if (!new_str)
 		return (NULL);
 	new_str[token->len] = '\0';
@@ -53,10 +62,9 @@ char *process_value(t_data *data, t_token *token, char *value, int *len)
 		}
 	}
 	return (new_str);
-	
 }
 
-int	get_new_len(t_data *data,char *content)
+int	get_new_len(t_data *data, char *content)
 {
 	int		len;
 	char	*value;
@@ -96,7 +104,6 @@ void	expand(t_data *data)
 {
 	t_token	*token;
 
-
 	token = data->token_list;
 	while (token)
 	{
@@ -110,4 +117,3 @@ void	expand(t_data *data)
 		token = token->next;
 	}
 }
-

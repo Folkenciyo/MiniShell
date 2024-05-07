@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/05 20:02:29 by pjimenez          #+#    #+#             */
+/*   Updated: 2024/05/05 20:24:42 by pjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -39,10 +50,9 @@ int	valid_key(char c)
 	return (0);
 }
 
-
-void append_env_value(char *str, const char *value, int *current)
+void	append_env_value(char *str, const char *value, int *current)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(value);
 	ft_memcpy(str + (*current), value, len);

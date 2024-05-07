@@ -59,7 +59,7 @@ int	ft_cd(t_data *data, char **cmd)
 
 int	cd(t_data *data, char **cmd)
 {
-	int status;
+	int	status;
 
 	status = 0;
 	if (ft_strncmp(cmd[0], "cd", 2) == 0 && cmd[0][2] == '\0')

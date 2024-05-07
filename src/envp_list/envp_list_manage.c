@@ -49,28 +49,3 @@ void	envp_list_add_front(t_env_list *lst, t_env_list *new)
 		lst = new;
 	}
 }
-
-/* hacer una variable xq al poner env la ultima variable de entorno es una variable 
-que guarda el útimo phat del comando ejecutaado, asiq hay q reemplazar el anterior x 
-el nuevo ejemplo:
-...
-HOMEBREW_TEMP=/tmp/juguerre/Homebrew/Temp
-TERM_PROGRAM=vscode
-TERM_PROGRAM_VERSION=1.86.0
-LANG=en_US.UTF-8
-COLORTERM=truecolor
-GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
-VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Plugin).app/Contents/MacOS/Code Helper (Plugin)
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=
-VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
-VSCODE_GIT_IPC_HANDLE=/var/folders/zz/zyxvpxvq6csfxvn_n000ckfw0034lq/T/vscode-git-bb7ae329ff.sock
-VSCODE_INJECTION=1
-ZDOTDIR=/Users/juguerre
-USER_ZDOTDIR=/Users/juguerre
-TERM=xterm-256color
-_=/usr/bin/env <-------------------------ESTO ES LO QUE HAY QUE CAMBIAR
-		   ...
-. PUTA
-
- */
-
