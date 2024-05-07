@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 20:02:34 by pjimenez          #+#    #+#             */
-/*   Updated: 2024/05/05 20:02:35 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:37:31 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	here_doc(t_cmd *cmd, char *here_doc)
 	int		fd[2];
 
 	input = NULL;
-	if (!here_doc && pipe(fd) == -1)
+	if (!here_doc || pipe(fd) < 0)
 		return (-1);
 	while (3)
 	{
 		input = readline("> ");
-		if (!input || (!ft_strncmp(input, here_doc, ft_strlen(here_doc))
-				&& !ft_strncmp(input, here_doc, ft_strlen(input))))
+		if (!input 
+			|| (input && !ft_strncmp(input, here_doc, ft_strlen(here_doc))))
 			break ;
 		write(fd[1], input, ft_strlen(input));
 		write(fd[1], "\n", 1);
@@ -32,7 +32,7 @@ int	here_doc(t_cmd *cmd, char *here_doc)
 	}
 	free(input);
 	close(fd[1]);
-	cmd->fd_out = fd[0];
+	cmd->fd_in = fd[0];
 	return (0);
 }
 
