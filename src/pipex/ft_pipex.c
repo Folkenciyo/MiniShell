@@ -21,6 +21,16 @@ static void	child_process_redir(t_cmd *node)
 	ft_redir_fd_std(node->fd_out, STDOUT, node->fd_out);
 }
 
+void error_cmd(char *cmd)
+{
+    ft_putstr_fd("bash: Command not found: ",2);
+    ft_putstr_fd(cmd,2);
+    ft_putstr_fd("\n",2);
+    exit(COMMAND_NULL);
+}
+
+
+
 int	ft_child_process(t_data *data, t_cmd *node)
 {
 	int		og_stdin;
@@ -38,10 +48,10 @@ int	ft_child_process(t_data *data, t_cmd *node)
 	paths = get_paths(data->envp);
 	tmp = abs_bin_path(node->command[0], paths);
 	if (!tmp)
-		exit(COMMAND_NULL);
+		error_cmd(node->command[0]);
 	if (execve(tmp, node->command, data->envp) < 0)
 	{
-		free(tmp);
+        free(tmp);
 		ft_free_matrix(paths);
 		ft_redir_fd_std(og_stdin, status, og_stdout);
 		exit(EXIT_FAILURE);
