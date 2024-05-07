@@ -591,6 +591,7 @@ void					signals_call(void);
 //token_init.c
 void					fill_token(t_data *data, int key, char *value);
 int						token_maker(t_data *data, char *str);
+void					token_jumper(t_token **token);
 
 /*UTILS FOR THE PARSER*/
 

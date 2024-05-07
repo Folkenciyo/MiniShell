@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 18:15:41 by juguerre          #+#    #+#             */
-/*   Updated: 2024/05/07 18:47:45 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:08:56 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	token_maker(t_data *data, char *str)
 	{
 		if (!special_chars(*tmp))
 			word_handler(data, &tmp);
+		
 		else if (*tmp == '>' || *tmp == '<')
 			redir_handler(data, &tmp);
 		else if (*tmp == '\'' || *tmp == '\"')
@@ -47,4 +48,23 @@ int	token_maker(t_data *data, char *str)
 	if (quotes)
 		return (free_token(&data->token_list), free(str), 1);
 	return (0);
+}
+
+
+
+
+void token_jumper(t_token **token)
+{
+	t_token *tmp;
+
+	tmp = *token;
+	while (tmp)
+	{
+		if (((tmp)->key == TKN_REDIR_APPEND || (tmp)->key == TKN_REDIR_OUT
+			|| (tmp)->key == TKN_REDIR_IN || (tmp)->key == TKN_REDIR_SOURCE)
+			&& tmp->next->key == TKN_WORD)
+			(tmp)->next->key = TKN_AFTER_REDIR;
+		printf("key: %d\n", tmp->key);
+		(tmp) = (tmp)->next;
+	}
 }

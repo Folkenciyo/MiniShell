@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:48:28 by pjimenez          #+#    #+#             */
-/*   Updated: 2024/05/07 19:00:00 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/05/07 22:44:56 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	console_init(t_data *data)
 		expand(data);
 		cmd_create(data);
 		ft_pipex(data);
+		print_cmd(data->cmd_list);
 		if (*input != '\0')
 			add_history(input);
 		restore_lists(&data, input);

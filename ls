@@ -1,0 +1,11 @@
+Makefile
+README.md
+cat
+hola
+include
+libft
+ls
+minishell
+minishell.dSYM
+obj
+src
