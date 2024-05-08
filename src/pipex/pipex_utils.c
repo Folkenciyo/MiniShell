@@ -76,6 +76,7 @@ char	*abs_bin_path(char *cmd, char **envp)
 				return (free(slash_cmd), possible_bin);
 		}
 	}
+	perror("shell: command not found\n");
 	return (free(slash_cmd), free(possible_bin), NULL);
 }
 

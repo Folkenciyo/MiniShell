@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 20:02:17 by pjimenez          #+#    #+#             */
-/*   Updated: 2024/05/05 20:02:18 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/05/08 20:22:18 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	unexpected_token(t_token *token)
 	{
 		if ((token->key == TKN_PIPE || token->key == TKN_REDIR_APPEND
 				|| token->key == TKN_REDIR_IN || token->key == TKN_REDIR_OUT
-				|| token->key == TKN_REDIR_SOURCE) && (!token->next
-				|| (token->next && token->next->key != TKN_WORD)))
+				|| token->key == TKN_REDIR_SOURCE)
+			&& (!token->next || (token->next && token->next->key != TKN_WORD)))
 			return (258);
 		token = token->next;
 	}
