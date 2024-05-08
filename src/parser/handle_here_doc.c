@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 20:02:34 by pjimenez          #+#    #+#             */
-/*   Updated: 2024/05/07 20:37:31 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/05/08 20:17:06 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	here_doc(t_cmd *cmd, char *here_doc)
 	while (3)
 	{
 		input = readline("> ");
-		if (!input 
+		if (!input
 			|| (input && !ft_strncmp(input, here_doc, ft_strlen(here_doc))))
 			break ;
 		write(fd[1], input, ft_strlen(input));

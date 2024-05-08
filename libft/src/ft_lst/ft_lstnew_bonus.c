@@ -30,7 +30,7 @@ t_token	*ft_tokennew(int key, char *content)
 
 	new_node = (t_token *)malloc(sizeof(t_token));
 	if (!new_node)
-		return NULL;
+		return (NULL);
 	new_node->key = key;
 	new_node->content = ft_strdup(content);
 	new_node->len = ft_strlen(new_node->content);
