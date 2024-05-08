@@ -6,7 +6,7 @@
 /*   By: pjimenez <pjimenez@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 20:02:05 by pjimenez          #+#    #+#             */
-/*   Updated: 2024/05/07 23:11:33 by pjimenez         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:39:41 by pjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,28 @@
 void	new_cmd_if(t_cmd **cmd_lst, t_cmd **new,t_token *token)
 {
 	if (!*new || (*new && (*new)->command[0] && (token->key != TKN_REDIR_APPEND
-				|| token->key != TKN_REDIR_OUT || token->key != TKN_PIPE))
-				|| token->key == TKN_AFTER_REDIR)
+				|| token->key != TKN_REDIR_OUT || token->key != TKN_PIPE || token->key != TKN_AFTER_REDIR)))
 	{
 		*new = new_cmd();
 		add_cmd_back(cmd_lst, *new);
 	}
 }
 
-void	add_word_cmd(t_cmd **new, t_token **token, int *status, int *fd_in)
+void	add_word_cmd(t_cmd **new, t_token **token)
 {
-	while (*token && (*token)->key == TKN_WORD)
+	while (*token && ((*token)->key == TKN_WORD))
 	{
+		
 		(*new)->command = add_to_command((*new)->command, (*token)->content);
+		*token = (*token)->next;
+	}
+}
+
+
+void create_redirs(t_cmd **new, t_token **token,int *status, int *fd_in)
+{
+	while (*token && ((*token)->key == TKN_AFTER_REDIR))
+	{
 		if (!(*token)->next && handle_redirections(*new, fd_in, token))
 		{
 			*status = 1;
@@ -36,6 +45,8 @@ void	add_word_cmd(t_cmd **new, t_token **token, int *status, int *fd_in)
 		*token = (*token)->next;
 	}
 }
+
+
 
 void	cmd_create(t_data *data)
 {
@@ -53,7 +64,8 @@ void	cmd_create(t_data *data)
 	while (token && !status)
 	{
 		new_cmd_if(&data->cmd_list, &new, token);
-		add_word_cmd(&new, &token, &status, &fd_in);
+		add_word_cmd(&new, &token);
+		create_redirs(&new, &token, &status, &fd_in);
 		if (token && handle_redirections(new, &fd_in, &token))
 		{
 			status = 1;

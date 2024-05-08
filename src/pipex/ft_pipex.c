@@ -48,7 +48,7 @@ int	ft_child_process(t_data *data, t_cmd *node)
 	paths = get_paths(data->envp);
 	tmp = abs_bin_path(node->command[0], paths);
 	if (!tmp)
-		error_cmd(node->command[0]);
+		 exit(COMMAND_NULL);
 	if (execve(tmp, node->command, data->envp) < 0)
 	{
         free(tmp);
